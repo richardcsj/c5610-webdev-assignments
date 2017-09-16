@@ -2,8 +2,6 @@
   margin-top: 80px;
 }
 
-
-
 #left {
   float:left;
 }
@@ -25,9 +23,15 @@
     overflow-y:scroll;
     top:60px;
     bottom:0px;
-    margin-top:10px;
+    padding-top:10px;
+
   }
 
 }
 
 li.borderless { border: 0 none; }
+
+a:link{
+  text-decoration: none;
+
+}
