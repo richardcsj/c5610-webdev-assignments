@@ -1,4 +1,33 @@
 .container {
   margin-top: 80px;
 }
-Email
+
+
+
+#left {
+  float:left;
+}
+
+.left-side{
+  position:absolute;
+  top:60px;
+  bottom:0px;
+  z-index: 1;
+  overflow-y:scroll;
+
+}
+
+@media (min-width: 1200px) {
+  .col-lg-9.split-side {
+    width:75%;
+    position:absolute;
+    right:0px;
+    overflow-y:scroll;
+    top:60px;
+    bottom:0px;
+    margin-top:10px;
+  }
+
+}
+
+li.borderless { border: 0 none; }
