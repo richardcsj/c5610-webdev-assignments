@@ -10,7 +10,7 @@
   <meta charset="UTF-8">
   <title>Widget list</title>
   <!--<link href="../../../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>-->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../../../vendor/css/bootstrap.min.css" rel="stylesheet"/>
 
   <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
@@ -24,51 +24,86 @@
     <div class="row">
 
       <!--back mark-->
-      <p class="navbar-text pull-left">
+      <div class="pad left"><p class=" navbar-text pull-left">
         <a href="../page/page-list.html" class="navbar-link">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
-      </p>
+      </p></div>
 
       <!--heading on the nav bar-->
-      <p class="navbar-header pull-left">
+      <p class=" navbar-header pull-left">
         <a class="navbar-brand thick">
           <b>Widget List</b>
         </a>
       </p>
 
       <!--add page mark-->
-      <p class="navbar-text pull-right">
+      <div class="pad right"><p class=" navbar-text pull-right">
         <a href="widget-chooser.html" class="navbar-link">
           <span class="glyphicon glyphicon-plus"></span>
         </a>
-      </p>
+    </p></div>
 
     </div>
   </div>
 </nav>
 
-<div class="container widget">
+<div class="container-fluid widget">
 
-  <ul class="list-group">
 
-    <li class="list-group-item link borderless">
-    <h2>Header</h2>
+<div class="rc-widget">
+<div class="toolbar">
+  <a href="../page/page-edit.html">
+<span class="glyphicon glyphicon-cog">
+  <span class="glyphicon glyphicon-menu-hamburger"></span>
+</span></a></div>
+  <h2>Example aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h2>
+</div>
+
+  <div class="rc-widget">
+    <div class="toolbar">
       <a href="../page/page-edit.html">
-        <span class="glyphicon glyphicon-cog pull-right"></span></a>
-    </li>
+<span class="glyphicon glyphicon-cog">
+  <span class="glyphicon glyphicon-menu-hamburger"></span>
+</span></a></div>
+    <h2><a href="widget-heading.html">Facebook</a></h2>
+    <a href="../page/page-edit.html">
+    </a>
+  </div>
 
-    <li class="list-group-item link borderless">
-      <p> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+  <div class="rc-widget">
+    <div class="toolbar">
       <a href="../page/page-edit.html">
-        <span class="meme glyphicon glyphicon-cog"></span></a></li>
+<span class="glyphicon glyphicon-cog">
+  <span class="glyphicon glyphicon-menu-hamburger"></span>
+</span></a></div>
+    <a href="widget-image.html">
+      <iframe class="imagevideo" width="300" src="https://www.youtube.com/embed/Wwq88xRnssQ"
+              frameborder="0" allowfullscreen></iframe>
+    </a>
+  </div>
 
-    <li class="list-group-item link borderless"><a href="../widget/widget-list.html">Google</a>
+  <div class="rc-widget">
+    <div class="toolbar">
       <a href="../page/page-edit.html">
-        <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+<span class="glyphicon glyphicon-cog">
+  <span class="glyphicon glyphicon-menu-hamburger"></span>
+</span></a></div>
+    <a href="widget-image.html">
+      <img class="imagevideo" src="../images/weapon_bio5.PNG"></a>
+    <a href="../page/page-edit.html">
+    </a>
+  </div>
 
-  </ul>
+
+
+
+
+
     </div>
+
+
+
 
 
 <!-- Footer -->
