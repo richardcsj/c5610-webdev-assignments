@@ -1,11 +1,11 @@
 .container {
   margin-top: 80px;
 }
-
-.container-fluid.widget {
-
-  margin-top:60px;
+.col-xs-12 {
+  width: 100%;
+  top: 75px;
 }
+
 .navbar{
   background-color:   #202D3D;
 }
@@ -62,29 +62,18 @@ a:link{
 
 }
 
-.pad.left{
-  padding-left:10px;
-}
 
-.pad.right{
-  padding-right:10px;
-}
-
-img{
-max-width:300px;
-  max-height:150px;
-}
-
-.toolbar{
+.rc-widget .rc-toolbar{
   position:absolute;
   right:0;
-  padding:7px;
-  opacity:0.3;
+  padding:3px;
+  opacity:0.5;
   border-bottom-left-radius:10px;
 
 }
 
-
-
+.rc-widget .rc-content{
+  width:100%;
+}
 
 
