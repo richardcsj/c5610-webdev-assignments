@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags for making website for mobile-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+
+
+  <meta charset="UTF-8">
+  <title>Website Edit</title>
+  <!--<link href="../../../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+
+  <link href="../css/style.css" rel="stylesheet"/>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-xs-3 visible-lg split-side">
+
+        <!--back mark-->
+        <p class=" pad-left navbar-text pull-left">
+          <a href="../user/profile.html" class="navbar-link">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+          </a>
+        </p>
+
+        <!--heading on the nav bar-->
+        <p class="navbar-header pull-left">
+          <a class="navbar-brand thick">
+            <b>Websites</b>
+          </a>
+        </p>
+
+        <!--add page mark-->
+        <p class="navbar-text pull-right">
+          <a href="website-new.html" class="navbar-link">
+            <span class="glyphicon glyphicon-plus"></span>
+          </a>
+        </p>
+
+
+      </div>
+
+      <p class=" pad-left navbar-text pull-left">
+        <a href="website-list.html" class="navbar-link">
+          <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+      </p>
+
+      <!--heading on the nav bar-->
+      <p class="navbar-header pull-left">
+        <a class="navbar-brand thick">
+          <b>Edit Website</b>
+        </a>
+      </p>
+
+
+      <p class="pad-right navbar-text pull-right">
+        <a href="website-list.html" class="navbar-link">
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>
+      </p>
+
+    </div>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-xs-3 visible-lg left-side"> <ul class="list-group">
+
+      <li class="list-group-item link borderless"><a href="../page/page-edit.html">Facebook</a>
+        <a href="../website/website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+
+      <li class="list-group-item link borderless"><a href="../page/page-edit.html">Google</a>
+        <a href="../website/website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+
+
+      <li class="list-group-item link borderless"><a href="../page/page-edit.html">Youtube</a>
+        <a href="../website/website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+
+    </ul></div>
+
+    <div class="col-lg-9 col-xs-12 split-side">
+    <div class="form-group">
+    <label for="usr">Website Name</label>
+    <input type="text" class="form-control" id="usr" placeholder="url">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Website Description</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1"
+              placeholder="Description" rows="5"></textarea>
+  </div>
+
+  <a class="btn btn-danger btn-block "
+     href="website-list.html" >Delete</a>
+
+
+</div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a href="../user/profile.html">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </p>
+
+  </div>
+</nav>
+
+</body>
+</html>
