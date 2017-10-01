@@ -31,7 +31,6 @@ export class UserService {
 
   createUser(user: any) {
     user._id = Math.random();
-    user._username = String();
     this.users.push(user);
     return user;
   }
@@ -45,9 +44,27 @@ export class UserService {
   }
 
   findUserByUsername(username: string) {
+    for (let x = 0; x < this.users.length; x++) {
+      if (this.users[x].username === username) {
+        return this.users[x];
+      }
+    }
   }
 
-  updateUser(userId, user) {
+  findUserByCredentials(username: string, password: string) {
+    for (let x = 0; x < this.users.length; x++) {
+      if (this.users[x].username === username && this.users[x].password === password) {
+        return this.users[x];
+      }
+    }
+  }
+
+  updateUser(userId: string, user: any) {
+    for (let x = 0; x < this.users.length; x++) {
+      if (this.users[x]._id === userId) {
+        this.users[x]; new userid;
+      }
+    }
   }
 
   deleteUser(userId) {
