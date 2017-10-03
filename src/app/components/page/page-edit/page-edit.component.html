@@ -6,7 +6,7 @@
 
       <!--back mark-->
       <p class="  navbar-text pull-left">
-        <a href="page-list.html" class="navbar-link">
+        <a [routerLink]="['user/123/website/123/page']" class="navbar-link">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
       </p>
@@ -20,7 +20,7 @@
 
       <!--add page mark-->
       <p class=" navbar-text pull-right">
-        <a href="page-list.html" class="navbar-link">
+        <a [routerLink]="['user/123/website/123/page']" class="navbar-link">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </p>
@@ -46,7 +46,7 @@
   </div>
 
   <a class="btn btn-danger btn-block "
-     href="page-list.html" >Delete</a>
+     [routerLink]="['user/123/website/123/page']" >Delete</a>
 
 
 </div>
@@ -56,7 +56,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
+      <a [routerLink]="['/user/123']">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

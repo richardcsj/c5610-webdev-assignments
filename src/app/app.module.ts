@@ -18,12 +18,12 @@ import { WebsiteNewComponent } from './components/website/website-new/website-ne
 import { PageEditComponent } from './components/page/page-edit/page-edit.component';
 import { PageListComponent } from './components/page/page-list/page-list.component';
 import { PageNewComponent } from './components/page/page-new/page-new.component';
-import { WidgetChooserComponent } from './components/widget/src/app/components/widget/widget-chooser/widget-chooser.component';
-import { WidgetEditComponent } from './components/widget/src/app/components/widget/widget-edit/widget-edit.component';
-import { WidgetListComponent } from './components/widget/src/app/components/widget/widget-list/widget-list.component';
-import { WidgetHeaderComponent } from './components/widget/widget-edit/src/app/components/widget/widget-edit/widget-header/widget-header.component';
-import { WidgetImageComponent } from './components/widget/widget-edit/src/app/components/widget/widget-edit/widget-image/widget-image.component';
-import { WidgetYoutubeComponent } from './components/widget/widget-edit/src/app/components/widget/widget-edit/widget-youtube/widget-youtube.component';
+import { WidgetChooserComponent } from './components/widget/widget-chooser/widget-chooser.component';
+import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
+import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
+import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
+import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
+import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 
 @NgModule({
   // Declare components here
@@ -54,7 +54,7 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/src/app/
     Routing
   ],
   // Client Side services here
-  providers: [ TestService],
+  providers: [TestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

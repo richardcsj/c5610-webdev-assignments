@@ -62,12 +62,20 @@ export class UserService {
   updateUser(userId: string, user: any) {
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x]._id === userId) {
-        this.users[x]; new userid;
+        this.users[x] = user;
       }
     }
   }
 
   deleteUser(userId) {
+    for (let x = 0; x < this.users.length; x++) {
+      if (this.users[x]._id === userId) {
+        let index = this.users.indexOf(this.users[x], 0);
+        if (index > -1) {
+           this.users.splice(index, 1);
+        }
+      }
+    }
   }
 }
 

@@ -5,7 +5,7 @@
 
       <!--back mark-->
       <p class="navbar-text pull-left">
-        <a href="../website/website-list.html" class="navbar-link">
+        <a [routerLink]="['user/123/website']" class="navbar-link">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
       </p>
@@ -19,7 +19,7 @@
 
       <!--add page mark-->
       <p class=" navbar-text pull-right">
-        <a href="page-new.html" class="navbar-link">
+        <a [routerLink]="['user/123/website/123/page/new']" class="navbar-link">
           <span class="glyphicon glyphicon-plus"></span>
         </a>
       </p>
@@ -32,16 +32,16 @@
 
   <ul class="list-group">
 
-    <li class="list-group-item link borderless"><a href="../widget/widget-list.html">BBC Tech</a>
-      <a href="../page/page-edit.html">
+    <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123/widget']">BBC Tech</a>
+      <a [routerLink]="['user/123/website/123/page/123']">
         <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
-    <li class="list-group-item link borderless"><a href="../widget/widget-list.html">Google</a>
-      <a href="../page/page-edit.html">
+    <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123/widget']">Google</a>
+      <a [routerLink]="['user/123/website/123/page/123']">
         <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
-    <li class="list-group-item link borderless"><a href="../widget/widget-list.html">Ragial</a>
-      <a href="../page/page-edit.html">
+    <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123/widget']">Ragial</a>
+      <a [routerLink]="['user/123/website/123/page/123']">
         <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
   </ul>
 
@@ -52,7 +52,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
+      <a [routerLink]="['user/123']">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

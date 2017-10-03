@@ -7,7 +7,7 @@
 
         <!--back mark-->
         <p class=" navbar-text pull-left">
-          <a href="../user/profile.html" class="navbar-link">
+          <a [routerLink]="['user/123']" class="navbar-link">
             <span class="glyphicon glyphicon-arrow-left"></span>
           </a>
         </p>
@@ -22,7 +22,7 @@
 
         <!--add page mark-->
         <p class=" navbar-text pull-right">
-          <a href="website-new.html" class="navbar-link">
+          <a [routerLink]="['user/123/website/new']" class="navbar-link">
             <span class="glyphicon glyphicon-plus"></span>
           </a>
         </p>
@@ -32,7 +32,7 @@
 
     <!--back mark-->
     <p class=" navbar-text pull-left">
-      <a href="website-list.html" class="navbar-link">
+      <a [routerLink]="['user/123/website']" class="navbar-link">
         <span class="glyphicon glyphicon-arrow-left"></span>
       </a>
     </p>
@@ -46,7 +46,7 @@
 
     <!--add page mark-->
     <p class="navbar-text pull-right">
-      <a href="website-list.html" class="navbar-link">
+      <a [routerLink]="['user/123/website']" class="navbar-link">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
     </p>
@@ -63,15 +63,15 @@
 
       <li class="list-group-item link active borderless">Name</li>
 
-      <li class="list-group-item link borderless"><a href="../page/page-edit.html">Facebook</a>
-        <a href="../website/website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+      <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123']">Facebook</a>
+        <a [routerLink]="['user/123/website/123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
-      <li class="list-group-item link borderless"><a href="../page/page-edit.html">Google</a>
-        <a href="../website/website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+      <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123']">Google</a>
+        <a [routerLink]="['user/123/website/123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
 
-      <li class="list-group-item link borderless"><a href="../page/page-edit.html">Youtube</a>
-        <a href="../website/website-edit.html"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+      <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123']">Youtube</a>
+        <a [routerLink]="['user/123/website/123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
     </ul></div>
 
@@ -91,9 +91,9 @@
       </div>
 
       <a class="btn btn-primary btn-block"
-         href="../website/website-list.html">Create</a>
+         [routerLink]="['user/123/website']">Create</a>
       <a class="btn btn-danger btn-block "
-         href="website-list.html" >Delete</a>
+         [routerLink]="['user/123/website']" >Delete</a>
     </div>
   </div>
 
@@ -106,7 +106,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a href="../user/profile.html">
+      <a [routerLink]="['user/123']">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
