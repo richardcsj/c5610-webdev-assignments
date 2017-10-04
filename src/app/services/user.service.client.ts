@@ -67,7 +67,7 @@ export class UserService {
     }
   }
 
-  deleteUser(userId) {
+  deleteUser(userId:string) {
     for (let x = 0; x < this.users.length; x++) {
       if (this.users[x]._id === userId) {
         let index = this.users.indexOf(this.users[x], 0);
