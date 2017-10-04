@@ -25,28 +25,28 @@
   <form>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" placeholder="walice">
+      <input type="text" class="form-control" id="username" [(ngModel)]="username" name ="username" placeholder="walice">
     </div>
   </form>
 
   <form>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="alice.wonderland@unicorn.com">
+      <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" placeholder="Email">
     </div>
   </form>
 
   <form>
     <div class="form-group">
       <label for="first-name">First Name</label>
-      <input type="text" class="form-control" id="first-name" placeholder="Alice">
+      <input type="text" class="form-control" id="first-name" [(ngModel)]="firstName" name="firstName" placeholder="Alice">
     </div>
   </form>
 
   <form>
     <div class="form-group">
       <label for="last-name">Last Name</label>
-      <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
+      <input type="text" class="form-control" id="last-name" [(ngModel)]="lastName" name="lastName" placeholder="Wonderland">
     </div>
   </form>
   <a class="btn btn-primary btn-block"

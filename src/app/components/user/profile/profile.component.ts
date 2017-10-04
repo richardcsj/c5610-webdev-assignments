@@ -12,6 +12,9 @@ export class ProfileComponent implements OnInit {
   userId:string;
   user:any;
   username:string;
+  email:string;
+  firstName:string;
+  lastName:string;
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -23,6 +26,9 @@ export class ProfileComponent implements OnInit {
 	);
 	this.user = this.userService.findUserById(this.userId);
 	this.username = this.user['username'];
+	this.email = this.user['email'];
+	this.firstName = this.user['firstName'];
+	this.lastName = this.user['lastName'];
 	}
 }
 
