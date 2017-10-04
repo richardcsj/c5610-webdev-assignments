@@ -7,7 +7,7 @@
 
         <!--back mark-->
         <p class=" pad-left navbar-text pull-left">
-          <a [routerLink]="['user/123']" class="navbar-link">
+          <a [routerLink]="['../']" class="navbar-link">
             <span class="glyphicon glyphicon-arrow-left"></span>
           </a>
         </p>
@@ -21,7 +21,7 @@
 
         <!--add page mark-->
         <p class="navbar-text pull-right">
-          <a [routerLink]="['user/123/website/new']" class="navbar-link">
+          <a [routerLink]="['../new']" class="navbar-link">
             <span class="glyphicon glyphicon-plus"></span>
           </a>
         </p>
@@ -30,7 +30,7 @@
       </div>
 
       <p class=" pad-left navbar-text pull-left">
-        <a [routerLink]="['user/123/website']" class="navbar-link">
+        <a [routerLink]="['../']" class="navbar-link">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
       </p>
@@ -44,7 +44,7 @@
 
 
       <p class="pad-right navbar-text pull-right">
-        <a [routerLink]="['user/123/website']" class="navbar-link">
+        <a [routerLink]="['../']" class="navbar-link">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </p>
@@ -53,50 +53,52 @@
 
   </div>
 </nav>
-
-<div class="container-fluid">
+<div class="container">
+  <div class="container-fluid">
 
   <div class="row">
     <div class="col-xs-3 visible-lg left-side"> <ul class="list-group">
 
-      <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page']">Facebook</a>
-        <a [routerLink]="['user/123/website/123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+      <li class="list-group-item link borderless"><a [routerLink]="['page']">Facebook</a>
+        <a [routerLink]="['./']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
-      <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page']">Google</a>
-        <a [routerLink]="['user/123/website/123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+      <li class="list-group-item link borderless"><a [routerLink]="['page']">Google</a>
+        <a [routerLink]="['./']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
 
-      <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page']">Youtube</a>
-        <a [routerLink]="['user/123/website/123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+      <li class="list-group-item link borderless"><a [routerLink]="['page']">Youtube</a>
+        <a [routerLink]="['./']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
     </ul></div>
 
     <div class="col-lg-9 col-xs-12 split-side">
     <div class="form-group">
     <label for="usr">Website Name</label>
-    <input type="text" class="form-control" id="usr" placeholder="url">
+    <input type="text" class="form-control" id="usr" [(ngModel)]="websiteName" name="websiteName" placeholder="url">
   </div>
 
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Website Description</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1"
+    <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="description" name="description" 
               placeholder="Description" rows="5"></textarea>
   </div>
 
   <a class="btn btn-danger btn-block "
-     [routerLink]="['user/123/website']" >Delete</a>
+     [routerLink]="['../']" >Delete</a>
 
 
 </div>
   </div>
 </div>
+</div>
+
 
 
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['user/123']">
+      <a [routerLink]="['../../']">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

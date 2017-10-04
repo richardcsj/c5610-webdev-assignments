@@ -6,7 +6,7 @@
 
       <!--back mark-->
       <p class="  navbar-text pull-left">
-        <a [routerLink]="['user/123/website/123/page']" class="navbar-link">
+        <a [routerLink]="['../']" class="navbar-link">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
       </p>
@@ -20,7 +20,7 @@
 
       <!--add page mark-->
       <p class=" navbar-text pull-right">
-        <a [routerLink]="['user/123/website/123/page']" class="navbar-link">
+        <a [routerLink]="['../']" class="navbar-link">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </p>
@@ -36,17 +36,17 @@
 
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Name">
+    <input type="text" class="form-control" id="name" [(ngModel)]="pageName" name="pageName" placeholder="Name">
   </div>
 
 
   <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" placeholder="Page Title">
+    <input type="text" class="form-control" id="title" [(ngModel)]="pageTitle" name="pageTitle"  placeholder="Page Title">
   </div>
 
   <a class="btn btn-danger btn-block "
-     [routerLink]="['user/123/website/123/page']" >Delete</a>
+     [routerLink]="['../']" >Delete</a>
 
 
 </div>
@@ -56,7 +56,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['/user/123']">
+      <a [routerLink]="['../../../../']">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

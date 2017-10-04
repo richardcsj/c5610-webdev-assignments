@@ -6,7 +6,7 @@
 
       <!--back mark-->
       <p class="  navbar-text pull-left">
-        <a [routerLink]="['user/123/website/123/page/123/widget']" class="navbar-link">
+        <a [routerLink]="['../']" class="navbar-link">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
       </p>
@@ -20,7 +20,7 @@
 
       <!--add page mark-->
       <p class=" navbar-text pull-right">
-        <a [routerLink]="['user/123/website/123/page/123/widget']" class="navbar-link">
+        <a [routerLink]="['../']" class="navbar-link">
           <span class="glyphicon glyphicon-ok"></span>
         </a>
       </p>
@@ -30,29 +30,29 @@
   </div>
 
 </nav>
-
-<div class="container-fluid">
+<div class="container">
+  <div class="container-fluid">
 
 
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Name">
+    <input type="text" class="form-control" id="name" [(ngModel)]="widgetName" name="widgetName"   placeholder="Name">
   </div>
 
 
   <div class="form-group">
     <label for="title">Text</label>
-    <input type="text" class="form-control" id="title" placeholder="Text">
+    <input type="text" class="form-control" id="title" [(ngModel)]="widgetText" name="widgetText" placeholder="Text">
   </div>
 
   <div class="form-group">
     <label for="url">URL</label>
-    <input type="url" class="form-control" id="url" placeholder="www.example.com">
+    <input type="url" class="form-control" id="url" [(ngModel)]="widgetUrl" name="widgetUrl" placeholder="www.example.com">
   </div>
 
   <div class="form-group">
     <label for="width">Width</label>
-    <input type="number" class="form-control" id="width" placeholder="Width">
+    <input type="number" class="form-control" id="width" [(ngModel)]="widgetWidth" name="widgetWidth" placeholder="Width">
   </div>
 
 
@@ -68,18 +68,20 @@
 
 
   <a class="btn btn-danger btn-block "
-     [routerLink]="['user/123/website/123/page/123/widget']" >Delete</a>
+     [routerLink]="['../']" >Delete</a>
 
 
 
 </div>
+</div>
+
 
 
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['user/123']">
+      <a [routerLink]="['../../../../../../']">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

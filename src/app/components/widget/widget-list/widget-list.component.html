@@ -4,7 +4,7 @@
 
       <!--back mark-->
       <p class=" navbar-text pull-left">
-        <a [routerLink]="['user/123/website/123/page']" class="navbar-link">
+        <a [routerLink]="['../../']" class="navbar-link">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
       </p>
@@ -18,7 +18,7 @@
 
       <!--add page mark-->
       <p class=" navbar-text pull-right">
-        <a [routerLink]="['user/123/website/123/page/123/widget/new']" class="navbar-link">
+        <a [routerLink]="['new']" class="navbar-link">
           <span class="glyphicon glyphicon-plus"></span>
         </a>
       </p>
@@ -26,13 +26,13 @@
     </div>
 
 </nav>
-
+<div class="container">
 <div class="container-fluid widget">
 
 
   <div class="rc-widget">
     <div class="rc-toolbar">
-      <a [routerLink]="['user/123/website/123/page/123/widget/123']">
+      <a [routerLink]="['123']">
 <span class="glyphicon glyphicon-cog"></span>
   <span class="glyphicon glyphicon-menu-hamburger"></span>
       </a></div>
@@ -43,10 +43,10 @@
 
   <div class="rc-widget">
     <div class="rc-toolbar">
-      <a [routerLink]="['user/123/website/123/page/123/widget/678']">
+      <a [routerLink]="['678']">
         <span class="glyphicon glyphicon-cog"></span>
   <span class="glyphicon glyphicon-menu-hamburger"></span></a></div>
- <a [routerLink]="['user/123/website/123/page/123/widget/678']">
+ <a [routerLink]="['678']">
    <iframe class="rc-content" width="560" height="315" src="https://www.youtube.com/embed/RY4rWrlY-qM"
            frameborder="0" allowfullscreen></iframe>
 </a>
@@ -54,17 +54,17 @@
 
   <div class="rc-widget">
     <div class="rc-toolbar">
-      <a [routerLink]="['user/123/website/123/page/123/widget/345']">
+      <a [routerLink]="['345']">
         <span class= "glyphicon glyphicon-cog"></span>
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </a></div>
-    <a [routerLink]="['user/123/website/123/page/123/widget/345']">
+    <a [routerLink]="['345']">
       <img class="rc-content" src="http://lorempixel.com/400/200/"></a>
   </div>
 
   <div class="rc-widget">
     <div class="rc-toolbar">
-      <a [routerLink]="['user/123/website/123/page/123/widget/123']">
+      <a [routerLink]="['123']">
         <span class="glyphicon glyphicon-cog"></span>
         <span class="glyphicon glyphicon-menu-hamburger"></span>
       </a></div>
@@ -75,14 +75,16 @@
 
 
 
+</div>  
 </div>
+
 
 
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['user/123']">
+      <a [routerLink]="['../../../../../']">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>

@@ -6,7 +6,7 @@
     <!--back mark-->
     <p class="navbar-text pull-left">
 
-      <a [routerLink]="['/user/123']" class="navbar-link">
+      <a [routerLink]="['../']" class="navbar-link">
         <span class="glyphicon glyphicon-arrow-left"></span>
       </a>
     </p>
@@ -23,7 +23,7 @@
     <!--add page mark-->
     <p class=" navbar-text pull-right">
 
-      <a [routerLink]="['/user/123/website/new']" class="navbar-link">
+      <a [routerLink]="['new']" class="navbar-link">
         <span class="glyphicon glyphicon-plus"></span>
       </a>
     </p>
@@ -38,14 +38,14 @@
     <li class="list-group-item link active borderless">Name</li>
 
 
-    <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123']">Facebook</a>
-      <a [routerLink]="['user/123/website/123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+    <li class="list-group-item link borderless"><a [routerLink]="['123/page']">Facebook</a>
+      <a [routerLink]="['123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
-    <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123']">Google</a>
-      <a [routerLink]="['user/123/website/123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+    <li class="list-group-item link borderless"><a [routerLink]="['123/page']">Google</a>
+      <a [routerLink]="['123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
-    <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123']">Youtube</a>
-      <a [routerLink]="['user/123/website/123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+    <li class="list-group-item link borderless"><a [routerLink]="['123/page']">Youtube</a>
+      <a [routerLink]="['123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
   </ul>
 
@@ -56,7 +56,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['user/123']" >
+      <a [routerLink]="['../']" >
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
