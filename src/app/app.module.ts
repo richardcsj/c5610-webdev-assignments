@@ -6,7 +6,8 @@ import { TestComponent } from './components/test/test.component';
 import {Routing} from './app.routing';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
-import {TestService} from './services/test.service.client';
+import {UserService} from './services/user.service.client';
+import {APP_BASE_HREF} from '@angular/common';
 
 /* MAKE SURE YOUR COMPONENTS ARE IMPORTED HERE */
 import { LoginComponent } from './components/user/login/login.component';
@@ -54,7 +55,7 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
     Routing
   ],
   // Client Side services here
-  providers: [TestService],
+  providers: [{provide: APP_BASE_HREF, useValue: '/my/app'},UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
