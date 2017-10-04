@@ -39,11 +39,13 @@ export class WebsiteService {
   }
 
   findWebsitesByUser(userId:string) {
+    let resultWebsites = [];
     for (let x = 0; x < this.websites.length; x++) {
       if (this.websites[x].developerId === userId) {
-        return this.websites[x];
+        resultWebsites.push(this.websites[x]);
       }
     }
+    return resultWebsites;
   }
 
   findWebsiteById(websiteId:string){

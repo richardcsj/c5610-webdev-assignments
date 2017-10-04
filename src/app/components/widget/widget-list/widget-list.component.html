@@ -30,56 +30,24 @@
 <div class="container-fluid widget">
 
 
-  <div class="rc-widget">
+  <div *ngFor="let widget of widgets" class="rc-widget">
     <div class="rc-toolbar">
-      <a [routerLink]="['123']">
+      <a [routerLink]="[widget._id]">
 <span class="glyphicon glyphicon-cog"></span>
   <span class="glyphicon glyphicon-menu-hamburger"></span>
       </a></div>
-    <h2>This is a heading</h2>
-  </div>
-
-
-
-  <div class="rc-widget">
-    <div class="rc-toolbar">
-      <a [routerLink]="['678']">
-        <span class="glyphicon glyphicon-cog"></span>
-  <span class="glyphicon glyphicon-menu-hamburger"></span></a></div>
- <a [routerLink]="['678']">
-   <iframe class="rc-content" width="560" height="315" src="https://www.youtube.com/embed/RY4rWrlY-qM"
+  <a *ngIf="widget.widgetType=='YOUTUBE'" [routerLink]="[widget._id]">
+   <iframe class="rc-content" width="{{widget.width}}" height="315" [src]="widget.url"
            frameborder="0" allowfullscreen></iframe>
-</a>
+  </a>
+  <a *ngIf="widget.widgetType=='IMAGE'" [routerLink]="[widget._id]">
+      <img class="rc-content" [src]="['http://lorempixel.com',widget.width,'200']">
+  </a>
+  {{widget.text}}
   </div>
 
-  <div class="rc-widget">
-    <div class="rc-toolbar">
-      <a [routerLink]="['345']">
-        <span class= "glyphicon glyphicon-cog"></span>
-        <span class="glyphicon glyphicon-menu-hamburger"></span>
-      </a></div>
-    <a [routerLink]="['345']">
-      <img class="rc-content" src="http://lorempixel.com/400/200/"></a>
-  </div>
-
-  <div class="rc-widget">
-    <div class="rc-toolbar">
-      <a [routerLink]="['123']">
-        <span class="glyphicon glyphicon-cog"></span>
-        <span class="glyphicon glyphicon-menu-hamburger"></span>
-      </a></div>
-    <p>President Donald Trump’s increasingly fantastical wall on the border with Mexico—which will be up to 65 feet tall,
-    impossible to cut through, covered in solar panels and
-      aesthetically pleasing from the US side—will now also be a “see-through wall.”</p>
-  </div>
-
-
-
-</div>  
 </div>
-
-
-
+</div>  
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">

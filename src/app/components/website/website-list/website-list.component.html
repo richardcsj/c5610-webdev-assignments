@@ -37,16 +37,10 @@
 
     <li class="list-group-item link active borderless">Name</li>
 
-
-    <li class="list-group-item link borderless"><a [routerLink]="['123/page']">Facebook</a>
-      <a [routerLink]="['123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-
-    <li class="list-group-item link borderless"><a [routerLink]="['123/page']">Google</a>
-      <a [routerLink]="['123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-
-    <li class="list-group-item link borderless"><a [routerLink]="['123/page']">Youtube</a>
-      <a [routerLink]="['123']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-
+    <li  class="list-group-item link borderless" *ngFor="let website of websites">
+      <a [routerLink]="[website._id,'page']">{{website.name}}</a>
+      <a [routerLink]="[website._id]"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+    </li>
   </ul>
 
 </div>

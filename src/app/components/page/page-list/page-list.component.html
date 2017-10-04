@@ -32,17 +32,11 @@
 
   <ul class="list-group">
 
-    <li class="list-group-item link borderless"><a [routerLink]="['321/widget']">BBC Tech</a>
-      <a [routerLink]="['321']">
-        <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-
-    <li class="list-group-item link borderless"><a [routerLink]="['321/widget']">Google</a>
-      <a [routerLink]="['321']">
-        <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-
-    <li class="list-group-item link borderless"><a [routerLink]="['321/widget']">Ragial</a>
-      <a [routerLink]="['321']">
-        <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+    <li class="list-group-item link borderless" *ngFor="let page of pages">
+      <a [routerLink]="[page._id,'widget']">{{page.name}}</a>
+      <a [routerLink]="[page._id]">
+        <span class="glyphicon glyphicon-cog pull-right"></span></a>
+    </li>
   </ul>
 
 </div>
