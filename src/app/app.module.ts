@@ -7,8 +7,9 @@ import {Routing} from './app.routing';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {UserService} from './services/user.service.client';
-import {WebsiteService} from './services/page.service.client';
+import {WebsiteService} from './services/website.service.client';
 import {PageService} from './services/page.service.client';
+import {WidgetService} from './services/widget.service.client';
 import {APP_BASE_HREF} from '@angular/common';
 
 /* MAKE SURE YOUR COMPONENTS ARE IMPORTED HERE */
@@ -57,7 +58,7 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
     Routing
   ],
   // Client Side services here
-  providers: [{provide: APP_BASE_HREF, useValue: '/'},UserService,WebsiteService,PageService],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'},UserService,WebsiteService,PageService,WidgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
