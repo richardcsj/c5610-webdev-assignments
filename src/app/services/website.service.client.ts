@@ -49,12 +49,12 @@ export class WebsiteService {
   findWebsiteById(websiteId:string){
     for (let x = 0; x < this.websites.length; x++) {
       if (this.websites[x]._id === websiteId) {
-        resultPages.push(this.websites[x]);
+        return this.websites[x];
       }
     }
   }
 
-  updatePage(websiteId: string, website: any) {
+  updateWebsite(websiteId: string, website: any) {
     for (let x = 0; x < this.websites.length; x++) {
       if (this.websites[x]._id === websiteId) {
         this.websites[x] = website;

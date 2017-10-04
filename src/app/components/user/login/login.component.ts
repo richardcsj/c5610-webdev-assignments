@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild} } from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -16,13 +16,12 @@ export class LoginComponent implements OnInit {
   errorMsg = 'Invalid username or password !';
   constructor() { }
 
-  ngOnInit() {
-    login() {
+  ngOnInit() { }
+  login() {
       // fetching data from loginForm
       this.username = this.loginForm.value.username;
       this.password = this.loginForm.value.password;
       console.log(this.username,this.password);
     }
-  }
 
 }
