@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserService} from "../../../services/user.service.client";
+import {Routes, RouterModule,ActivatedRoute,Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   password: string;
   errorFlag: boolean;
   errorMsg = 'Invalid username or password !';
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private route: ActivatedRoute,
+            private router: Router) {}
 
   ngOnInit() { }
   login() {
@@ -28,8 +30,8 @@ export class LoginComponent implements OnInit {
       if(user==undefined){
         this.errorFlag = true;
       }else{
-        //need to redirect to profile
-
+        //redirect to profile
+        this.router.navigate(['/user',user._id]);
       }
     }
 
