@@ -14,7 +14,7 @@ export class WidgetImageComponent implements OnInit {
 	widgetName:string;
 	widgetText:string;
 	widgetUrl:string;
-	widgetWidth:number;
+	widgetWidth:string;
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class WidgetImageComponent implements OnInit {
 	this.widgetName = this.widget["name"];
 	this.widgetText = this.widget["text"];
 	this.widgetUrl = this.widget["url"];
-	this.widgetWidth = eval(this.widget["width"]);
+	this.widgetWidth = this.widget["width"];
 
   }
 

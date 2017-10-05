@@ -13,6 +13,7 @@ import {PageNewComponent} from "./components/page/page-new/page-new.component";
 import {PageEditComponent} from "./components/page/page-edit/page-edit.component";
 import {WidgetListComponent} from "./components/widget/widget-list/widget-list.component";
 import {WidgetChooserComponent} from "./components/widget/widget-chooser/widget-chooser.component";
+import {WidgetEditComponent } from "./components/widget/widget-edit/widget-edit.component";
 import {WidgetHeaderComponent} from "./components/widget/widget-edit/widget-header/widget-header.component";
 import {WidgetImageComponent} from "./components/widget/widget-edit/widget-image/widget-image.component";
 import {WidgetYoutubeComponent} from "./components/widget/widget-edit/widget-youtube/widget-youtube.component";
@@ -31,9 +32,10 @@ const APP_ROUTES : Routes = [
   { path : 'user/:userId/website/:wid/page/:pid' , component: PageEditComponent},
   { path : 'user/:userId/website/:wid/page/:pid/widget' , component: WidgetListComponent},
   { path : 'user/:userId/website/:wid/page/:pid/widget/new' , component: WidgetChooserComponent},
+  { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetEditComponent },
   { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetHeaderComponent},
   { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetImageComponent},
-  { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetYoutubeComponent},
+  { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetYoutubeComponent}
 ];
 // Export the routes as module providers
 export const Routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

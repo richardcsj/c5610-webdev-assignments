@@ -27,26 +27,46 @@
 
 </nav>
 <div class="container">
-<div class="container-fluid widget">
-
-
-  <div *ngFor="let widget of widgets" class="rc-widget">
-    <div class="rc-toolbar">
-      <a [routerLink]="[widget._id]">
-<span class="glyphicon glyphicon-cog"></span>
-  <span class="glyphicon glyphicon-menu-hamburger"></span>
-      </a></div>
-  <a *ngIf="widget.widgetType=='YOUTUBE'" [routerLink]="[widget._id]">
-   <iframe class="rc-content" width="{{widget.width}}" height="315" [src]="widget.url"
-           frameborder="0" allowfullscreen></iframe>
-  </a>
-  <a *ngIf="widget.widgetType=='IMAGE'" [routerLink]="[widget._id]">
-      <img class="rc-content" [src]="['http://lorempixel.com',widget.width,'200']">
-  </a>
-  {{widget.text}}
+  <div class="container-fluid widget">
+    <div *ngFor="let widget of widgets">
+      <div [ngSwitch]="widget.widgetType">
+        <div *ngSwitchCase="'HEADING'">
+          <div class="rc-widget">
+            <div class="rc-toolbar">
+              <a [routerLink]="[widget._id]">
+            <span class="glyphicon glyphicon-cog"></span>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+              </a></div>
+            {{widget.text}}
+          </div>
+        </div>
+        <div *ngSwitchCase="'YOUTUBE'">
+          <div class="rc-widget">
+            <div class="rc-toolbar">
+              <a [routerLink]="[widget._id]">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-menu-hamburger"></span></a></div>
+               <a [routerLink]="[widget._id]">
+                <iframe class="rc-content" width="{{widget.width}}" height="315" [src]="widget.url"
+                   frameborder="0" allowfullscreen></iframe>
+                </a>
+          </div>
+        </div>
+        <div *ngSwitchCase="'IMAGE'">
+          <div class="rc-widget">
+            <div class="rc-toolbar">
+              <a [routerLink]="[widget._id]">
+                <span class= "glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+              </a>
+            </div>
+            <a [routerLink]="[widget._id]">
+              <img class="rc-content" [src]="widget.url"></a>
+          </div>
+        </div>
+      </div>
+    </div> 
   </div>
-
-</div>
 </div>  
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">

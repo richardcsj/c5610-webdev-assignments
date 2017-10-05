@@ -13,7 +13,7 @@ export class WidgetYoutubeComponent implements OnInit {
 	widgetName:string;
 	widgetTitle:string;
 	widgetUrl:string;
-	widgetWidth:number;
+	widgetWidth:string;
 
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute) { }
 
@@ -28,7 +28,7 @@ export class WidgetYoutubeComponent implements OnInit {
 	this.widgetName = this.widget["name"];
 	this.widgetTitle = this.widget["title"];
 	this.widgetUrl = this.widget["url"];
-	this.widgetWidth = eval(this.widget["width"]);
+	this.widgetWidth = this.widget["width"];
   }
 
 }
