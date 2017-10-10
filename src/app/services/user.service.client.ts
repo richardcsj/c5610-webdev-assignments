@@ -30,7 +30,7 @@ export class UserService {
   };
 
   createUser(user: any) {
-    user._id = Math.random();
+    user._id = ""+Math.floor(Math.random()*900) + 100;
     this.users.push(user);
     return user;
   }

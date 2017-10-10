@@ -32,7 +32,7 @@ export class WebsiteService {
   };
 
   createWebsite(userId:string, website:any){
-    website._id = Math.random();
+    website._id = ""+Math.floor(Math.random()*900) + 100;
     website.developerId = userId;
     this.websites.push(website);
     return website;

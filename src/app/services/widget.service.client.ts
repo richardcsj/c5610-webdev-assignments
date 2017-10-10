@@ -34,7 +34,7 @@ export class WidgetService {
   };
 
   createWidget(pageId:string, widget:any) {
-    widget._id = Math.random();
+    widget._id = ""+Math.floor(Math.random()*900) + 100;
     widget.pageId = pageId;
     this.widgets.push(widget);
     return widget;

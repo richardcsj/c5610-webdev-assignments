@@ -28,7 +28,7 @@ export class PageService {
   };
 
   createPage(websiteId:string, page:any) {
-    page._id = Math.random();
+    page._id = ""+Math.floor(Math.random()*900) + 100;
     page.websiteId = websiteId;
     this.pages.push(page);
     return page;
