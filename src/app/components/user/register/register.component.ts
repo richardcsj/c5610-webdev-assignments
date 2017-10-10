@@ -31,7 +31,6 @@ export class RegisterComponent implements OnInit {
       this.pwdconfirmation = this.registerForm.value.pwdconfirmation;
       let user = this.userService.findUserByUsername(this.username);
       if(user==undefined){
-      	console.log(this.password,this.pwdconfirmation);
       	if(this.password == this.pwdconfirmation){
       		user = {_id: "", username: this.username, password: this.password, firstName: "", lastName: ""};
       		user = this.userService.createUser(user);
