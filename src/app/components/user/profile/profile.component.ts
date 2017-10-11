@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
 	.subscribe(
 		(params: any) => {
 		this.userId = params['userId'];
-		} 
+		}
 	);
 	this.user = this.userService.findUserById(this.userId);
 	this.username = this.user['username'];
@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     this.user['email'] = newEmail;
     this.userService.updateUser(this.userId,this.user);
   }
-  updateUsername(newUserName){
+  updateUserName(newUserName){
     this.user['username'] = newUserName;
     this.userService.updateUser(this.userId,this.user);
   }

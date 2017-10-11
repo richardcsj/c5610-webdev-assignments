@@ -14,16 +14,20 @@ export class WidgetService {
   }
 
   widgets = [
-                { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-                { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-                { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                "url": "http://lorempixel.com/400/200/"},
-                { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-                { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-                { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-                "url": "https://youtu.be/AM2Ivdi9c4E" },
-                { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-        ];
+    {'_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
+    {'_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
+    {
+      '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%',
+      'url': 'http://lorempixel.com/400/200/'
+    },
+    {'_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
+    {'_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
+    {
+      '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%',
+      'url': 'https://www.youtube.com/embed/AM2Ivdi9c4E'
+    },
+    {'_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
+  ];
 
   api = {
     'createWidget': this.createWidget,
@@ -33,15 +37,15 @@ export class WidgetService {
     'deleteWidget': this.deleteWidget
   };
 
-  createWidget(pageId:string, widget:any) {
-    widget._id = ""+Math.floor(Math.random()*900) + 100;
+  createWidget(pageId: string, widget: any) {
+    widget._id = '' + Math.floor(Math.random() * 900) + 100;
     widget.pageId = pageId;
     this.widgets.push(widget);
     return widget;
   }
 
   findWidgetsByPageId(pageId: string) {
-    let resultWidgets = [];
+    const resultWidgets = [];
     for (let x = 0; x < this.widgets.length; x++) {
       if (this.widgets[x].pageId === pageId) {
         resultWidgets.push(this.widgets[x]);
@@ -50,10 +54,10 @@ export class WidgetService {
     return resultWidgets;
   }
 
-  findWidgetById(widgetId:string) {
+  findWidgetById(widgetId: string) {
     for (let x = 0; x < this.widgets.length; x++) {
       if (this.widgets[x]._id === widgetId) {
-          return this.widgets[x];
+        return this.widgets[x];
       }
     }
   }
@@ -66,12 +70,12 @@ export class WidgetService {
     }
   }
 
-  deleteWidget(widgetId:string) {
+  deleteWidget(widgetId: string) {
     for (let x = 0; x < this.widgets.length; x++) {
       if (this.widgets[x]._id === widgetId) {
-        let index = this.widgets.indexOf(this.widgets[x], 0);
+        const index = this.widgets.indexOf(this.widgets[x], 0);
         if (index > -1) {
-           this.widgets.splice(index, 1);
+          this.widgets.splice(index, 1);
         }
       }
     }
