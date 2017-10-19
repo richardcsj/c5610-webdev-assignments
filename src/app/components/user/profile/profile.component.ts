@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit {
   email:string;
   firstName:string;
   lastName:string;
+  messageFlag:boolean;
+  message = 'profile is updated !';
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -24,27 +26,41 @@ export class ProfileComponent implements OnInit {
 		this.userId = params['userId'];
 		}
 	);
-	this.user = this.userService.findUserById(this.userId);
-	this.username = this.user['username'];
-	this.email = this.user['email'];
-	this.firstName = this.user['firstName'];
-	this.lastName = this.user['lastName'];
+	this.userService.findUserById(this.userId)
+  .subscribe(
+    (user:any)=>{
+      this.user = user;
+      this.username = this.user['username'];
+      this.email = this.user['email'];
+      this.firstName = this.user['firstName'];
+      this.lastName = this.user['lastName'];
+    },
+    (error:any)=>{
+      console.log(error);
+
+    }
+    );
+	
 	}
-  updateEmail(newEmail){
-    this.user['email'] = newEmail;
-    this.userService.updateUser(this.userId,this.user);
+  updateEmail(){
+    this.user['email'] = this.email;
+    this.userService.updateUser(this.userId,this.user).subscribe(res => console.log(res));
+    this.messageFlag = true;
   }
-  updateUserName(newUserName){
-    this.user['username'] = newUserName;
-    this.userService.updateUser(this.userId,this.user);
+  updateUserName(){
+    this.user['username'] = this.username;
+    this.userService.updateUser(this.userId,this.user).subscribe(res => console.log(res));
+    this.messageFlag = true;
   }
-  updateFirstName(newFirstName){
-    this.user['firstName'] = newFirstName;
-    this.userService.updateUser(this.userId,this.user);
+  updateFirstName(){
+    this.user['firstName'] = this.firstName;
+    this.userService.updateUser(this.userId,this.user).subscribe(res => console.log(res));
+    this.messageFlag = true;
   }
-  updateLastName(newLastName){
-    this.user['lastName'] = newLastName;
-    this.userService.updateUser(this.userId,this.user);
+  updateLastName(){
+    this.user['lastName'] = this.lastName;
+    this.userService.updateUser(this.userId,this.user).subscribe(res => console.log(res));
+    this.messageFlag = true;
   }
 }
 

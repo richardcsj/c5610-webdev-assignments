@@ -22,9 +22,12 @@ module.exports= function(app){
 	function createUser(req,res){
 		var user = req.body.user;
 		if(user!=undefined){
-			user._id = ""+Math.floor(Math.random()*900) + 100;
+			user._id = Math.floor(Math.random()*900) + 100;
+			user._id = ""+user._id;
 			users.push(user);
 			res.send(user);
+		}else{
+			res.status(500).send("Couldn't create user");
 		}
 	}
 	
@@ -37,7 +40,10 @@ module.exports= function(app){
 		}else{
 			user = findUserByCredentials(username,password);
 		}
-		res.send(user);
+		if(user!=undefined)
+			res.send(user);
+		else
+			res.status(404).send('User Not found');
 	}
 
 	var findUserByUsername = function(username) {
@@ -57,12 +63,16 @@ module.exports= function(app){
   	}
 
   	function findUserById(req,res) {
+  		var found = false;
   		var userId = req.params.userId;
 	    for (var x = 0; x < users.length; x++) {
 	      if (users[x]._id === userId) {
 	         res.send(users[x]);
+	         found = true;
 	      }
 	    }
+	    if(!found)
+	    	res.status(404).send('Not found');
   	}
 
   	function updateUser(req,res){

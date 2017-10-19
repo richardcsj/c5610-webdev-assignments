@@ -21,18 +21,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { }
   login() {
-      //hide error msg if already there
-      this.errorFlag = false;
       // fetching data from loginForm
       this.username = this.loginForm.value.username;
       this.password = this.loginForm.value.password;
-      let user = this.userService.findUserByCredentials(this.username,this.password);
-      if(user==undefined){
-        this.errorFlag = true;
-      }else{
-        //redirect to profile
-        this.router.navigate(['/user',user._id]);
-      }
+      this.userService.findUserByCredentials(this.username,this.password)
+      .subscribe(
+         (user: any) => {
+             this.errorFlag = false;
+             //redirect to profile
+             this.router.navigate(['/user',user._id]);
+           },
+         (error: any) => {
+            this.errorFlag = true;
+         }
+        );
     }
-
 }

@@ -29,21 +29,32 @@ export class RegisterComponent implements OnInit {
       this.username = this.registerForm.value.username;
       this.password = this.registerForm.value.password;
       this.pwdconfirmation = this.registerForm.value.pwdconfirmation;
-      let user = this.userService.findUserByUsername(this.username);
-      if(user==undefined){
-      	if(this.password == this.pwdconfirmation){
-      		user = {_id: "", username: this.username, password: this.password, firstName: "", lastName: ""};
-      		user = this.userService.createUser(user);
-      		//redirect to profile
-        	this.router.navigate(['/user',user._id]);
-      	}else{
-      		this.errorFlag = true;
-      		this.errorMsg = "password and password confirmation are not the same";
-      	}
-      }else{
-      	this.errorFlag = true;
-      	this.errorMsg = "The username is already taken";
-      }
+      this.userService.findUserByUsername(this.username)
+      .subscribe(
+        (user:any)=> {
+            this.errorFlag = true;
+            this.errorMsg = "The username is already taken";
+        },
+        (error:any)=>{
+          if(this.password == this.pwdconfirmation){
+              let user = {_id: "", username: this.username, password: this.password, firstName: "", lastName: ""};
+              this.userService.createUser(user)
+              .subscribe(
+                (newUser:any)=>{
+                  //redirect to profile
+                  this.router.navigate(['/user',newUser._id]);
+                },
+                (error:any)=>{
+                  this.errorFlag = true;
+                  this.errorMsg = "Couldn't create user";
+                }
+                );
+            }else{
+              this.errorFlag = true;
+              this.errorMsg = "password and password confirmation are not the same";
+            }
+        }
+        );
     }
 
 }

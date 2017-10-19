@@ -20,31 +20,35 @@
 
 
 <div class="container">
+  <div *ngIf="messageFlag"
+    class="alert alert-success">
+    {{message}}
+  </div>
   <form>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" [(ngModel)]="username" (ngModelChange)="updateUserName($event)" name ="username" placeholder="walice">
+      <input type="text" class="form-control" id="username" [(ngModel)]="username" (blur)="updateUserName()" name ="username" placeholder="walice">
     </div>
   </form>
 
   <form>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" [(ngModel)]="email" (ngModelChange)="updateEmail($event)" name="email" placeholder="Email">
+      <input type="email" class="form-control" id="email" [(ngModel)]="email" (blur)="updateEmail()" name="email" placeholder="Email">
     </div>
   </form>
 
   <form>
     <div class="form-group">
       <label for="first-name">First Name</label>
-      <input type="text" class="form-control" id="first-name" [(ngModel)]="firstName" (ngModelChange)="updateFirstName($event)" name="firstName" placeholder="First Name">
+      <input type="text" class="form-control" id="first-name" [(ngModel)]="firstName" (blur)="updateFirstName()" name="firstName" placeholder="First Name">
     </div>
   </form>
 
   <form>
     <div class="form-group">
       <label for="last-name">Last Name</label>
-      <input type="text" class="form-control" id="last-name" [(ngModel)]="lastName" (ngModelChange)="updateLastName($event)" name="lastName" placeholder="Last name">
+      <input type="text" class="form-control" id="last-name" [(ngModel)]="lastName" (blur)="updateLastName()" name="lastName" placeholder="Last name">
     </div>
   </form>
   <a class="btn btn-primary btn-block"
