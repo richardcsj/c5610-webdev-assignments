@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // Point static path to dist -- For building -- REMOVE
-//app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 
 
@@ -33,6 +33,7 @@ app.use(function(req, res, next) {
 
 
 const port = process.env.PORT || '3100';
+const ipaddress = process.env.IP || '127.0.0.1';
 
 // Create HTTP server
 /*const server = http.createServer(app);
@@ -43,8 +44,8 @@ serverSide(app);
 
 */
 // For Build: Catch all other routes and return the index file -- BUILDING
-app.get('*', function (req, res) {
+/*app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+});*/
 require("./assignment/app.js")(app);
-app.listen( port , '127.0.0.1');
+app.listen( port , ipaddress);
