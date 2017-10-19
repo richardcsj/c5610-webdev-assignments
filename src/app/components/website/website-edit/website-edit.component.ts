@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router} from "@angular/router";
 import {WebsiteService} from "../../../services/website.service.client";
-import {PageService} from "../../../services/page.service.client";
 
 @Component({
   selector: 'app-website-edit',
@@ -19,9 +18,10 @@ export class WebsiteEditComponent implements OnInit {
 	errorMsg = "No website for particular id";
 	messageFlag:boolean;
 	message:string;
-	pagesForWebsite: any[] = [{}];
-  constructor(private websiteService: WebsiteService, private pageService: PageService, 
-  	private activatedRoute: ActivatedRoute,private router:Router) { }
+	websites: any[] = [{}];
+  constructor(private websiteService: WebsiteService, 
+  			 private activatedRoute: ActivatedRoute,
+  			 private router:Router) { }
 
   ngOnInit() {
   	this.activatedRoute.params
@@ -38,12 +38,20 @@ export class WebsiteEditComponent implements OnInit {
 			this.website = website;
 			this.websiteName  = this.website['name'];
 			this.description = this.website['description'];
-			this.pagesForWebsite = this.pageService.findPageByWebsiteId(this.websiteId);
 		},
 		(error:any) => {
 			this.errorFlag = true;
 		}
 
+		);
+	this.websiteService.findWebsitesByUser(this.userId).
+		subscribe(
+			(websites:any)=>{
+				this.websites = websites;
+			},
+			(error:any)=>{
+				console.log(error);
+			}
 		);
 	}
 	deleteWbesite(){

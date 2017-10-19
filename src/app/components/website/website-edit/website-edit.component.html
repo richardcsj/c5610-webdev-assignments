@@ -68,9 +68,9 @@
     <div class="col-xs-3 visible-lg left-side"> <ul class="list-group">
 
 
-      <li class="list-group-item link borderless" *ngFor="let page of pagesForWebsite">
-        <a [routerLink]="['page',page._id,'widget']">{{page.name}}</a>
-        <a [routerLink]="['page',page._id]"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+      <li class="list-group-item link borderless" *ngFor="let website of websites">
+        <a [routerLink]="['../',website._id,'page']">{{website.name}}</a>
+        <a [routerLink]="['../',website._id]"><span class="glyphicon glyphicon-cog pull-right"></span></a>
       </li>
 
     </ul></div>
