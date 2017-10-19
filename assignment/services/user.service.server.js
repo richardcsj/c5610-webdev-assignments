@@ -78,22 +78,32 @@ module.exports= function(app){
   	function updateUser(req,res){
   		var userId = req.params.userId;
   		var user = req.body.user;
+  		var updated = false;
   		for (var x = 0; x < users.length; x++) {
       		if (users[x]._id === userId) {
         		users[x] = user;
+        		updated = true;
+        		res.send({updated:true});
      		}
     	}
+    	if(!updated)
+    		res.status(404).send("couldn't find user for userId");
   	}
 
   	function deleteUser(req,res){
   		var userId = req.params.userId;
+  		var deleted = false;
   		for (var x = 0; x < users.length; x++) {
       		if (users[x]._id === userId) {
         	var index = users.indexOf(users[x], 0);
         		if (index > -1) {
            			users.splice(index, 1);
+           			deleted = true;
+           			res.send({deleted:true});
         		}
       		}
     	}
+    	if(!deleted)
+    		res.status(404).send("Couldn't find user for userId");
   	}
 }

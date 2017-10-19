@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute,Router} from "@angular/router";
 import {WebsiteService} from "../../../services/website.service.client";
+import {PageService} from "../../../services/page.service.client";
 
 @Component({
   selector: 'app-website-edit',
@@ -14,7 +15,13 @@ export class WebsiteEditComponent implements OnInit {
 	websiteId:string;
 	websiteName:string;
 	description:string;
-  constructor(private websiteService: WebsiteService, private activatedRoute: ActivatedRoute) { }
+	errorFlag : boolean;
+	errorMsg = "No website for particular id";
+	messageFlag:boolean;
+	message:string;
+	pagesForWebsite: any[] = [{}];
+  constructor(private websiteService: WebsiteService, private pageService: PageService, 
+  	private activatedRoute: ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
   	this.activatedRoute.params
@@ -24,9 +31,64 @@ export class WebsiteEditComponent implements OnInit {
 		this.websiteId = params['wid'];
 		} 
 	);
-	this.website = this.websiteService.findWebsiteById(this.websiteId);
-	this.websiteName  = this.website['name'];
-	this.description = this.website['description'];
-  }
+	this.websiteService.findWebsiteById(this.websiteId)
+	.subscribe(
+		(website:any) => {
+			this.errorFlag = false;
+			this.website = website;
+			this.websiteName  = this.website['name'];
+			this.description = this.website['description'];
+			this.pagesForWebsite = this.pageService.findPageByWebsiteId(this.websiteId);
+		},
+		(error:any) => {
+			this.errorFlag = true;
+		}
+
+		);
+	}
+	deleteWbesite(){
+		this.websiteService.deleteWebsite(this.websiteId).subscribe(
+			(res:any) => {this.router.navigate(["../"],{relativeTo: this.activatedRoute})},
+			(error:any) => {console.log(error)}
+
+			);
+	}
+	updateName(){
+		this.errorFlag = false;
+		this.messageFlag = false;
+		if(this.website['name'] != this.websiteName){
+			this.website['name'] = this.websiteName;
+			this.websiteService.updateWebsite(this.websiteId,this.website)
+				.subscribe(
+					(res:any)=>{
+						this.messageFlag = true;
+						this.message = 'Website name is updated !';
+						},
+					(error:any)=>{
+						this.errorFlag = true;
+						this.errorMsg = 'Cannot update website name';
+					}
+				);
+		}
+		
+	}
+	updateDescription(){
+		this.errorFlag = false;
+		this.messageFlag = false;
+		if(this.website['description'] != this.description){
+			this.website['description'] = this.description;
+			this.websiteService.updateWebsite(this.websiteId,this.website)
+				.subscribe(
+					(res:any)=>{
+						this.messageFlag = true;
+						this.message = 'Website description is updated !';
+						},
+					(error:any)=>{
+						this.errorFlag = true;
+						this.errorMsg = 'Cannot update website description';
+					}
+				);
+		}
+	}
 
 }

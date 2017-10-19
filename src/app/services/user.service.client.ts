@@ -58,7 +58,12 @@ export class UserService {
   }
 
   deleteUser(userId:string) {
-    return this._http.delete(this.baseUrl + '/api/user/'+userId);
+    return this._http.delete(this.baseUrl + '/api/user/'+userId).map(
+       (res: Response) => {
+         const data = res.json();
+         return data;
+       }
+     );
   }
 }
 

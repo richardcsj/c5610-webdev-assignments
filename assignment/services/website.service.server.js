@@ -28,11 +28,14 @@ websites = [
   	var website = req.body.website;
   	var userId = req.params.userId;
 		if(website!=undefined){
-			website._id = ""+Math.floor(Math.random()*900) + 100;
+			website._id = Math.floor(Math.random()*900) + 100;
+      website._id = ""+website._id;
 			website.developerId = userId;
 			websites.push(website);
 			res.send(website);
-		}
+		}else{
+      res.status(500).send("Couldn't create website");
+    }
   }
 
   function findAllWebsitesForUser(req,res){
@@ -48,33 +51,47 @@ websites = [
 
   function findWebsiteById(req,res){
   	var websiteId = req.params.websiteId;
+    var found = false;
   	for(var x = 0; x < websites.length; x++){
   		if(websites[x]._id === websiteId){
   			res.send(websites[x]);
+        found = true;
   		}
   	}
+    if(!found)
+      res.status(404).send('Not found');
   }
 
   function updateWebsite(req,res){
   	var websiteId = req.params.websiteId;
   	var website = req.body.website;
+    var edited = false;
   	for (var x = 0; x < websites.length; x++) {
       if (websites[x]._id === websiteId) {
         websites[x] = website;
+        edited = true;
+        res.send({updated:true});
       }
     }
+    if(!edited)
+      res.status(404).send("couldn't find website for websiteId");
   }
 
   function deleteWebsite(req,res){
   	var websiteId = req.params.websiteId;
+    var deleted = false;
   	for (var x = 0; x < websites.length; x++) {
       if (websites[x]._id === websiteId) {
         var index = websites.indexOf(websites[x], 0);
         if (index > -1) {
            websites.splice(index, 1);
+           deleted = true;
+           res.send({deleted:true});
         }
       }
     }
+    if(!deleted)
+      res.status(404).send("couldn't find website for websitId");
   }
 
 	

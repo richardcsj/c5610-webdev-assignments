@@ -54,37 +54,41 @@
   </div>
 </nav>
 <div class="container">
+  <div *ngIf="errorFlag"
+    class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+  <div *ngIf="messageFlag"
+    class="alert alert-success">
+    {{message}}
+  </div>
   <div class="container-fluid">
 
   <div class="row">
     <div class="col-xs-3 visible-lg left-side"> <ul class="list-group">
 
-      <li class="list-group-item link borderless"><a [routerLink]="['page']">Facebook</a>
-        <a [routerLink]="['./']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
 
-      <li class="list-group-item link borderless"><a [routerLink]="['page']">Google</a>
-        <a [routerLink]="['./']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-
-
-      <li class="list-group-item link borderless"><a [routerLink]="['page']">Youtube</a>
-        <a [routerLink]="['./']"><span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+      <li class="list-group-item link borderless" *ngFor="let page of pagesForWebsite">
+        <a [routerLink]="['page',page._id,'widget']">{{page.name}}</a>
+        <a [routerLink]="['page',page._id]"><span class="glyphicon glyphicon-cog pull-right"></span></a>
+      </li>
 
     </ul></div>
 
     <div class="col-lg-9 col-xs-12 split-side">
     <div class="form-group">
     <label for="usr">Website Name</label>
-    <input type="text" class="form-control" id="usr" [(ngModel)]="websiteName" name="websiteName" placeholder="url">
+    <input type="text" class="form-control" id="usr" [(ngModel)]="websiteName" (blur)="updateName()" name="websiteName" placeholder="url">
   </div>
 
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Website Description</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="description" name="description" 
+    <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="description" (blur)="updateDescription()" name="description" 
               placeholder="Description" rows="5"></textarea>
   </div>
 
   <a class="btn btn-danger btn-block "
-     [routerLink]="['../']" >Delete</a>
+     (click)="deleteWbesite()" >Delete</a>
 
 
 </div>
