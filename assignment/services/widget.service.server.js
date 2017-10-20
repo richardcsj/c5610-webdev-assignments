@@ -34,7 +34,8 @@ module.exports=function(app){
   function createWidget(req,res){
   	var pageId = req.params.pageId;
   	var widget = req.body.widget;
-  	widget._id = ""+Math.floor(Math.random()*900) + 100;
+  	widget._id = Math.floor(Math.random()*900) + 100;
+    widget._id = ""+ widget._id ;
   	widget.pageId = pageId;
   	widgets.push(widget);
   	res.send(widget);
@@ -53,32 +54,46 @@ module.exports=function(app){
 
   function findWidgetById(req,res){
   	var widgetId = req.params.widgetId;
+    var found = false;
   	for (var x = 0; x < widgets.length; x++) {
       if (widgets[x]._id === widgetId) {
+        found = true;
         res.send(widgets[x]);
       }
     }
+    if(!found)
+      res.status(404).send('Widget not found for wedgetId');
   }
 
   function updateWidget(req,res){
   	var widgetId = req.params.widgetId;
   	var widget = req.body.widget;
+    var updated = false; 
   	for(var x = 0; x < widgets.length; x++){
   		if(widgets[x]._id === widgetId){
   			widgets[x] = widget;
+        updated = true;
+        res.send({updated:true});
   		}
   	}
+    if(!updated)
+      res.status(404).send('Widget not found for wedgetId');
   }
 
   function deleteWidget(req,res){
   	var widgetId = req.params.widgetId;
+    var deleted = false;
   	for (var x = 0; x < widgets.length; x++) {
       if (widgets[x]._id === widgetId) {
         var index = widgets.indexOf(widgets[x], 0);
         if (index > -1) {
            widgets.splice(index, 1);
+           deleted = true;
+           res.send({deleted:true});
         }
       }
-    }  	
+    }
+    if(!deleted)
+      res.status(404).send('Widget not found for wedgetId');  	
   }
 }

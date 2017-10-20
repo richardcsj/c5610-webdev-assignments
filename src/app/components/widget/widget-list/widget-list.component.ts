@@ -21,10 +21,15 @@ export class WidgetListComponent implements OnInit {
 				this.pageId = params['pid'];
 			}
 		);
-		this.widgets = this.widgetService.findWidgetsByPageId(this.pageId);
-		for (let x = 0; x<this.widgets.length;x++){
-			this.widgets[x]['url'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.widgets[x]['url']);
-
-  		}
+	this.widgetService.findWidgetsByPageId(this.pageId)
+		.subscribe(
+			(widgets:any)=>{
+				this.widgets = widgets;
+				for (let x = 0; x<this.widgets.length;x++){
+					this.widgets[x]['url'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.widgets[x]['url']);
+		  		}
+			}
+		)
+		
   	}
 }

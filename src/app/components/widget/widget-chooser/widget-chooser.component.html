@@ -5,7 +5,7 @@
 
       <!--back mark-->
       <p class="navbar-text pull-left">
-        <a [routerLink]="['user/123/website/123/page/123/widget']" class="navbar-link">
+        <a [routerLink]="['../']" class="navbar-link">
           <span class="glyphicon glyphicon-arrow-left"></span>
         </a>
       </p>
@@ -26,11 +26,11 @@
 
   <ul class="list-group">
 
-    <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123/widget/123']">Header</a>
+    <li class="list-group-item link borderless"><a (click)="createWidget('HEADER')">Header</a>
 
-    <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123/widget/345']">Image</a>
+    <li class="list-group-item link borderless"><a (click)="createWidget('IMAGE')">Image</a>
 
-    <li class="list-group-item link borderless"><a [routerLink]="['user/123/website/123/page/123/widget/678']">Youtube</a>
+    <li class="list-group-item link borderless"><a (click)="createWidget('YOUTUBE')">Youtube</a>
 
 
   </ul>
@@ -42,7 +42,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['user/123']">
+      <a [routerLink]="['../../../../../../../']">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
