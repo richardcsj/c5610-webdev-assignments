@@ -27,8 +27,8 @@
 
 </nav>
 <div class="container">
-  <div class="container-fluid widget">
-    <div *ngFor="let widget of widgets">
+  <div class="container-fluid widget" appSortable>
+    <div *ngFor="let widget of widgets" >
       <div [ngSwitch]="widget.widgetType">
         <div *ngSwitchCase="'HEADING'">
           <div class="rc-widget">

@@ -11,6 +11,9 @@ import {SafeResourceUrl, SafeUrl} from '@angular/platform-browser'
 export class WidgetImageComponent implements OnInit {
 
   	widgetId:string;
+  	pageId:string;
+  	websiteId:string;
+  	userId:string;
 	widget:any;
 	widgetName:string;
 	widgetText:string;
@@ -24,6 +27,9 @@ export class WidgetImageComponent implements OnInit {
 	.subscribe(
 		(params: any) => {
 		this.widgetId = params['wgid'];
+		this.pageId = params['pid'];
+		this.websiteId = params['wid'];
+		this.userId = params['userId'];
 		} 
 	);
 	this.widgetService.findWidgetById(this.widgetId).subscribe(

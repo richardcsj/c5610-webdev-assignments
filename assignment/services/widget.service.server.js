@@ -1,5 +1,7 @@
 module.exports=function(app){
 
+  var multer = require('multer'); 
+  var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
 
   widgets = [
     {'_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
@@ -22,7 +24,8 @@ module.exports=function(app){
     'findAllWidgetsForPage': findAllWidgetsForPage,
     'findWidgetById': findWidgetById,
     'updateWidget': updateWidget,
-    'deleteWidget': deleteWidget
+    'deleteWidget': deleteWidget,
+    'uploadImage':uploadImage
   };
 
   app.post('/api/page/:pageId/widget',api.createWidget);
@@ -30,6 +33,7 @@ module.exports=function(app){
   app.get('/api/widget/:widgetId',api.findWidgetById);
   app.put('/api/widget/:widgetId',api.updateWidget);
   app.delete('/api/widget/:widgetId',api.deleteWidget);
+  app.post ("/api/upload", upload.single('myFile'), api.uploadImage);
 
   function createWidget(req,res){
   	var pageId = req.params.pageId;
@@ -96,4 +100,36 @@ module.exports=function(app){
     if(!deleted)
       res.status(404).send('Widget not found for wedgetId');  	
   }
+
+  function uploadImage(req, res) {
+        var widget;
+        var widgetId      = req.body.widgetId;
+        var myFile        = req.file;
+
+        var userId = req.body.userId;
+        var websiteId = req.body.websiteId;
+        var pageId = req.body.pageId;
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+        for (var x = 0; x < widgets.length; x++) {
+          if (widgets[x]._id === widgetId) {
+            widget = widgets[x];
+          }
+        }
+        widget.url = '/uploads/'+filename;
+        widget.name = req.body.widgetName;
+        widget.text = req.body.widgetText;
+        widget.width = req.body.widgetWidth;
+
+        var callbackUrl   = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+
+        res.redirect(callbackUrl);
+    }
+
 }

@@ -33,6 +33,7 @@
 <div class="container">
   <div class="container-fluid">
 
+  <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
 
   <div class="form-group">
     <label for="name">Name</label>
@@ -55,15 +56,15 @@
     <input type="number" class="form-control" id="width" [(ngModel)]="widgetWidth" name="widgetWidth" placeholder="Width">
   </div>
 
+   <input  name="myFile"   type="file" class="form-control"/>
+   <input  name="widgetId" value="{{widgetId}}"   style="display: none"/>
+   <input  name="websiteId" value="{{websiteId}}"   style="display: none"/>
+   <input  name="pageId" value="{{pageId}}"   style="display: none"/>
+   <input  name="userId" value="{{userId}}"   style="display: none"/>
+   <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+   <br/>
+  </form>
 
-  <div>
-    <input type="file" class="form-control">
-  </div>
-
-
-  <label class="btn btn-primary btn-block control-label">
-    Upload Image
-  </label>
 
 
 
