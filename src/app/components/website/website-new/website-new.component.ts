@@ -44,7 +44,7 @@ export class WebsiteNewComponent implements OnInit {
 
   	this.websiteService.createWebsite(this.userId,website).subscribe(
   			(website:any)=>{
-  				this.router.navigate(['../',website._id],{relativeTo:this.route});
+  				this.router.navigate(['../'],{relativeTo:this.route});
   			},
   			(error:any)=>{
 				console.log(error);

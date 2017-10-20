@@ -33,20 +33,23 @@
 
 <div class="container">
 
-
+<div *ngIf="msgFlag"
+    class="alert alert-success">
+    {{msg}}
+  </div>
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" [(ngModel)]="pageName" name="pageName" placeholder="Name">
+    <input type="text" class="form-control" id="name" [(ngModel)]="pageName" (blur)="updateName()" name="pageName" placeholder="Name">
   </div>
 
 
   <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" [(ngModel)]="pageTitle" name="pageTitle"  placeholder="Page Title">
+    <input type="text" class="form-control" id="title" [(ngModel)]="pageTitle" (blur)="updateTitle()" name="pageTitle"  placeholder="Page Title">
   </div>
 
   <a class="btn btn-danger btn-block "
-     [routerLink]="['../']" >Delete</a>
+     (click)="deletePage()" >Delete</a>
 
 
 </div>
