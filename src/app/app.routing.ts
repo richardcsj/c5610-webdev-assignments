@@ -17,6 +17,7 @@ import {WidgetEditComponent } from "./components/widget/widget-edit/widget-edit.
 import {WidgetHeaderComponent} from "./components/widget/widget-edit/widget-header/widget-header.component";
 import {WidgetImageComponent} from "./components/widget/widget-edit/widget-image/widget-image.component";
 import {WidgetYoutubeComponent} from "./components/widget/widget-edit/widget-youtube/widget-youtube.component";
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 // Import all other components here
 const APP_ROUTES : Routes = [
@@ -35,7 +36,8 @@ const APP_ROUTES : Routes = [
   { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetEditComponent },
   { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetHeaderComponent},
   { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetImageComponent},
-  { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetYoutubeComponent}
+  { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid' , component: WidgetYoutubeComponent},
+  { path : 'user/:userId/website/:wid/page/:pid/widget/:wgid/search' , component: FlickrImageSearchComponent}
 ];
 // Export the routes as module providers
 export const Routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

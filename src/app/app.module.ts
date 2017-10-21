@@ -10,6 +10,7 @@ import {UserService} from './services/user.service.client';
 import {WebsiteService} from './services/website.service.client';
 import {PageService} from './services/page.service.client';
 import {WidgetService} from './services/widget.service.client';
+import {FlickrService} from './services/flickr.service.client';
 import {APP_BASE_HREF} from '@angular/common';
 
 /* MAKE SURE YOUR COMPONENTS ARE IMPORTED HERE */
@@ -29,6 +30,7 @@ import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-he
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { SortableDirective } from './directives/sortable.directive';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 @NgModule({
   // Declare components here
@@ -51,7 +53,8 @@ import { SortableDirective } from './directives/sortable.directive';
     WidgetHeaderComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    SortableDirective
+    SortableDirective,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,7 @@ import { SortableDirective } from './directives/sortable.directive';
     Routing
   ],
   // Client Side services here
-  providers: [{provide: APP_BASE_HREF, useValue: '/'},UserService,WebsiteService,PageService,WidgetService],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'},UserService,WebsiteService,PageService,WidgetService,FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

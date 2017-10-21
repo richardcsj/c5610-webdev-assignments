@@ -61,5 +61,8 @@ export class WidgetImageComponent implements OnInit {
       }
     )
  }
+ search(){
+  this.router.navigate(['./search'],{relativeTo:this.activatedRoute});
+ }
 
 }
