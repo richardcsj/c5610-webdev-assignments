@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router,ActivatedRoute} from "@angular/router";
 import {WidgetService} from "../../../../services/widget.service.client";
 import {SafeResourceUrl, SafeUrl} from '@angular/platform-browser'
+import {environment} from '../../../../../environments/environment';
+
 
 @Component({
   selector: 'app-widget-image',
@@ -19,6 +21,8 @@ export class WidgetImageComponent implements OnInit {
 	widgetText:string;
 	widgetUrl:SafeResourceUrl;
 	widgetWidth:string;
+  baseUrl = environment.baseUrl;
+
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
