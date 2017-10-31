@@ -13,6 +13,8 @@ module.exports = function(app){
   	mongoose.connect(connectionString, {
     	useMongoClient: true
   	});
-
-  	require('./user/user.model.server.js')(app,mongoose);
+  	mongoose.Promise = require('bluebird');
+  	return {
+  		userModel:require('./user/user.model.server.js')(app,mongoose)
+  	 }
 }

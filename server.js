@@ -36,10 +36,10 @@ const port = process.env.PORT || '3100';
 
 // Create HTTP server
 const server = http.createServer(app);
-
+//models
+var models = require("./assignment/model/models.server.js")(app);
 // For Build: Catch all other routes and return the index file -- BUILDING
-
-require("./assignment/app.js")(app);
+require("./assignment/app.js")(app,models);
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));

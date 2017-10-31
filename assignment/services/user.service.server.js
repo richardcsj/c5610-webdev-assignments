@@ -1,4 +1,4 @@
-module.exports= function(app){
+module.exports= function(app,userModel){
 	users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
@@ -21,14 +21,16 @@ module.exports= function(app){
 
 	function createUser(req,res){
 		var user = req.body.user;
-		if(user!=undefined){
-			user._id = Math.floor(Math.random()*900) + 100;
-			user._id = ""+user._id;
-			users.push(user);
-			res.send(user);
-		}else{
-			res.status(500).send("Couldn't create user");
-		}
+		userModel.createUser(user)
+			.then(
+				function(result){
+					res.send(result);
+				},
+				function(error){
+					console.log(error);
+					res.status(500).send("Couldn't create user");
+				}
+			);
 	}
 	
 	function findUser(req,res){
@@ -63,16 +65,20 @@ module.exports= function(app){
   	}
 
   	function findUserById(req,res) {
-  		var found = false;
   		var userId = req.params.userId;
-	    for (var x = 0; x < users.length; x++) {
-	      if (users[x]._id === userId) {
-	         res.send(users[x]);
-	         found = true;
-	      }
-	    }
-	    if(!found)
-	    	res.status(404).send('Not found');
+  		userModel.
+  			findUserById(userId)
+	  		.then(
+					function(user){
+						res.send(user);
+					},
+					function(error){
+						console.log(error);
+						res.status(404).send('Not found');
+					}
+				);
+		
+	    
   	}
 
   	function updateUser(req,res){
