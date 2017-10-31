@@ -1,9 +1,4 @@
 module.exports= function(app,userModel){
-	users = [
-    {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
-    {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-    {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-    {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}];
 
     api = {
     'createUser': createUser,
@@ -36,33 +31,29 @@ module.exports= function(app,userModel){
 	function findUser(req,res){
 		var username = req.query.username;
 		var password = req.query.password;
-		var user;
 		if(password==undefined){
-			user = findUserByUsername(username);
+			userModel.findUserByUsername(username)
+				.then(
+					function(user){
+						res.send(user);
+					},
+					function(error){
+						res.status(404).send('User Not found');
+					}
+				)
 		}else{
-			user = findUserByCredentials(username,password);
+			userModel.findUserByCredentials(username,password)
+				.then(
+					function(user){
+						console.log(user);
+						res.send(user);
+					},
+					function(error){
+						res.status(404).send('User Not found');
+					}
+				)
 		}
-		if(user!=undefined)
-			res.send(user);
-		else
-			res.status(404).send('User Not found');
 	}
-
-	var findUserByUsername = function(username) {
-	    for (var x = 0; x < users.length; x++) {
-	      if (users[x].username === username) {
-	        return users[x];
-	      }
-	    }
-  	}
-
-  	var findUserByCredentials = function(username, password) {
-	    for (var x = 0; x < users.length; x++) {
-	      if (users[x].username === username && users[x].password === password) {
-	        return users[x];
-	      }
-	    }
-  	}
 
   	function findUserById(req,res) {
   		var userId = req.params.userId;
