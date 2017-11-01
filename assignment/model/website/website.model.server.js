@@ -4,11 +4,10 @@ module.exports = function(app,mongoose,UserModel){
 	WebsiteModel = mongoose.model("Website", WebsiteSchema);
 	api = {
 		"createWebsiteForUser":createWebsiteForUser,
-		"findAllWebsitesForUser":findAllWebsitesForUser/*,
-		"findWebsiteByWebsitename":findWebsiteByWebsitename,
-		"findWebsiteByCredentials":findWebsiteByCredentials,
+		"findAllWebsitesForUser":findAllWebsitesForUser,
+		"findWebsiteById":findWebsiteById,
 		"updateWebsite":updateWebsite,
-		"deleteWebsite":deleteWebsite*/
+		"deleteWebsite":deleteWebsite
 	}
 
 	return api;
@@ -47,25 +46,20 @@ module.exports = function(app,mongoose,UserModel){
 				}
 			)
 	}
-/*	
-	function findWebsiteByWebsitename(Websitename){
+
+	function findWebsiteById(websiteId){
 		return WebsiteModel
-			.findOne({Websitename:Websitename});
-	}
-	
-	function findWebsiteByCredentials(Websitename, password){
-		return WebsiteModel
-			.findOne({Websitename:Websitename,password:password});
-	}
-	
-	function updateWebsite(WebsiteId,Website){
-		return WebsiteModel
-			.findOneAndUpdate({_id:WebsiteId},Website);
+			.findOne({_id:websiteId});
 	}
 
-	function deleteWebsite(WebsiteId){
+	function updateWebsite(websiteId,website){
 		return WebsiteModel
-			.remove({_id:WebsiteId});
+			.findOneAndUpdate({_id:websiteId},website);
 	}
-	*/
+
+	function deleteWebsite(websiteId){
+		return WebsiteModel
+			.remove({_id:websiteId});
+	}
+	
 }
