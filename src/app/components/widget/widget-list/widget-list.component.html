@@ -29,7 +29,7 @@
 <div class="container">
   <div class="container-fluid widget" appSortable>
     <div *ngFor="let widget of widgets" >
-      <div [ngSwitch]="widget.widgetType">
+      <div [ngSwitch]="widget.type">
         <div *ngSwitchCase="'HEADING'">
           <div class="rc-widget">
             <div class="rc-toolbar">

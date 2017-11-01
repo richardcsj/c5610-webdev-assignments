@@ -29,7 +29,6 @@ export class WidgetListComponent implements OnInit {
 					this.widgets[x]['url'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.widgets[x]['url']);
 		  		}
 			}
-		)
-		
+		)	
   	}
 }

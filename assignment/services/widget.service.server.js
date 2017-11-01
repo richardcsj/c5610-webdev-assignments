@@ -1,24 +1,7 @@
-module.exports=function(app){
+module.exports=function(app,WidgetModel){
 
   var multer = require('multer'); 
   var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
-
-  widgets = [
-    {'_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
-    {'_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
-    {
-      '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%',
-      'url': 'http://lorempixel.com/400/200/'
-    },
-    {'_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
-    {'_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
-    {
-      '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%',
-      'url': 'https://www.youtube.com/embed/AM2Ivdi9c4E'
-    },
-    {'_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
-  ];
-
   api = {
     'createWidget': createWidget,
     'findAllWidgetsForPage': findAllWidgetsForPage,
@@ -38,67 +21,68 @@ module.exports=function(app){
   function createWidget(req,res){
   	var pageId = req.params.pageId;
   	var widget = req.body.widget;
-  	widget._id = Math.floor(Math.random()*900) + 100;
-    widget._id = ""+ widget._id ;
-  	widget.pageId = pageId;
-  	widgets.push(widget);
-  	res.send(widget);
+    WidgetModel.createWidget(pageId,widget)
+        .then(
+            function(widget){
+              res.send(widget);
+            },
+            function(error){
+              res.status(500).send("Couldn't create widget for pageId");
+            }
+          );
   }
 
   function findAllWidgetsForPage(req,res){
   	var pageId = req.params.pageId;	
-    var resultWidgets = [];
-    for (var x = 0; x < widgets.length; x++) {
-      if (widgets[x].pageId === pageId) {
-        resultWidgets.push(widgets[x]);
-      }
-    }
-    res.send(resultWidgets);
+    WidgetModel.findAllWidgetsForPage(pageId)
+        .then(
+            function(widgets){
+              res.send(widgets);
+            },
+            function(error){
+              res.status(404).send("Couldn't find widgets for pageId");
+            }
+          );
   }
 
   function findWidgetById(req,res){
   	var widgetId = req.params.widgetId;
-    var found = false;
-  	for (var x = 0; x < widgets.length; x++) {
-      if (widgets[x]._id === widgetId) {
-        found = true;
-        res.send(widgets[x]);
-      }
-    }
-    if(!found)
-      res.status(404).send('Widget not found for wedgetId');
+    WidgetModel.findWidgetById(widgetId)
+        .then(
+            function(widget){
+              res.send(widget);
+            },
+            function(error){
+              res.status(404).send("Widget not found for wedgetId");
+            }
+          );
   }
 
   function updateWidget(req,res){
   	var widgetId = req.params.widgetId;
   	var widget = req.body.widget;
-    var updated = false; 
-  	for(var x = 0; x < widgets.length; x++){
-  		if(widgets[x]._id === widgetId){
-  			widgets[x] = widget;
-        updated = true;
-        res.send({updated:true});
-  		}
-  	}
-    if(!updated)
-      res.status(404).send('Widget not found for wedgetId');
+    WidgetModel.updateWidget(widgetId,widget)
+        .then(
+            function(widget){
+              res.send(widget);
+            },
+            function(error){
+              res.status(404).send("Widget not found for wedgetId");
+            }
+          );
   }
 
   function deleteWidget(req,res){
   	var widgetId = req.params.widgetId;
-    var deleted = false;
-  	for (var x = 0; x < widgets.length; x++) {
-      if (widgets[x]._id === widgetId) {
-        var index = widgets.indexOf(widgets[x], 0);
-        if (index > -1) {
-           widgets.splice(index, 1);
-           deleted = true;
-           res.send({deleted:true});
-        }
-      }
-    }
-    if(!deleted)
-      res.status(404).send('Widget not found for wedgetId');  	
+    WidgetModel.deleteWidget(widgetId)
+        .then(
+            function(result){
+              res.send({deleted:true});
+            },
+            function(error){
+              res.status(404).send("Widget not found for wedgetId");
+            }
+          );
   }
 
   function uploadImage(req, res) {
@@ -116,20 +100,28 @@ module.exports=function(app){
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
-
-        for (var x = 0; x < widgets.length; x++) {
-          if (widgets[x]._id === widgetId) {
-            widget = widgets[x];
-          }
-        }
-        widget.url = '/uploads/'+filename;
-        widget.name = req.body.widgetName;
-        widget.text = req.body.widgetText;
-        widget.width = req.body.widgetWidth;
-
-        var callbackUrl   = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
-
-        res.redirect(callbackUrl);
+        WidgetModel.findWidgetById(widgetId)
+            .then(
+            function(widget){
+              widget.url = '/uploads/'+filename;
+              widget.name = req.body.widgetName;
+              widget.text = req.body.widgetText;
+              widget.width = req.body.widgetWidth;
+              WidgetModel.updateWidget(widgetId,widget)
+                  .then(
+                    function(widget){
+                      var callbackUrl   = "/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widget._id;
+                      res.redirect(callbackUrl);
+                    },
+                    function(error){
+                      res.status(404).send("Widget not found for wedgetId");
+                    }
+                  );
+            },
+            function(error){
+              res.status(404).send("Widget not found for wedgetId");
+            }
+          );      
     }
 
 }

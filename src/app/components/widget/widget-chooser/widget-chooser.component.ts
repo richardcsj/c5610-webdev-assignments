@@ -23,12 +23,12 @@ export class WidgetChooserComponent implements OnInit {
   createWidget(widgetType:string){
   	let widget = undefined;
   	switch(widgetType){
-  		case 'HEADER':
-  			widget = {_id: '', widgetType: 'HEADING', pageId:this.pageId, size:0 , text: ''};break;
+  		case 'HEADING':
+  			widget = {_id: '', type: 'HEADING', pageId:this.pageId, size:0 , text: ''};break;
   		case 'IMAGE':
-  			widget = {_id: '', widgetType: 'IMAGE', pageId: this.pageId, width: '',url: ''};break;
+  			widget = {_id: '', type: 'IMAGE', pageId: this.pageId, width: '',url: ''};break;
 		case 'YOUTUBE':
-			widget = {_id: '', widgetType: 'YOUTUBE', pageId: this.pageId, width: '', url: ''};break;
+			widget = {_id: '', type: 'YOUTUBE', pageId: this.pageId, width: '', url: ''};break;
 
   	}
   	this.widgetService.createWidget(this.pageId,widget).subscribe(
