@@ -37,7 +37,17 @@
             <span class="glyphicon glyphicon-cog"></span>
             <span class="glyphicon glyphicon-menu-hamburger"></span>
               </a></div>
-            {{widget.text}}
+            <div [innerHTML]="widget.text"></div>
+          </div>
+        </div>
+        <div *ngSwitchCase="'HTML'">
+          <div class="rc-widget">
+            <div class="rc-toolbar">
+              <a [routerLink]="[widget._id]">
+            <span class="glyphicon glyphicon-cog"></span>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+              </a></div>
+            <div [innerHTML]="widget.text"></div>
           </div>
         </div>
         <div *ngSwitchCase="'YOUTUBE'">
@@ -45,11 +55,14 @@
             <div class="rc-toolbar">
               <a [routerLink]="[widget._id]">
                 <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-menu-hamburger"></span></a></div>
-               <a [routerLink]="[widget._id]">
+                <span class="glyphicon glyphicon-menu-hamburger"></span></a>
+            </div>
+            <div class="youtube-widget" >
+              <a [routerLink]="[widget._id]"> 
                 <iframe class="rc-content" width="{{widget.width}}" height="315" [src]="widget.url"
                    frameborder="0" allowfullscreen></iframe>
                 </a>
+            </div>    
           </div>
         </div>
         <div *ngSwitchCase="'IMAGE'">

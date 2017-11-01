@@ -12,6 +12,7 @@ import {PageService} from './services/page.service.client';
 import {WidgetService} from './services/widget.service.client';
 import {FlickrService} from './services/flickr.service.client';
 import {APP_BASE_HREF} from '@angular/common';
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 /* MAKE SURE YOUR COMPONENTS ARE IMPORTED HERE */
 import { LoginComponent } from './components/user/login/login.component';
@@ -31,6 +32,7 @@ import { WidgetImageComponent } from './components/widget/widget-edit/widget-ima
 import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { SortableDirective } from './directives/sortable.directive';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 
 @NgModule({
   // Declare components here
@@ -54,13 +56,15 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
     WidgetImageComponent,
     WidgetYoutubeComponent,
     SortableDirective,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    WidgetHtmlComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    Routing
+    Routing,
+    QuillEditorModule
   ],
   // Client Side services here
   providers: [{provide: APP_BASE_HREF, useValue: '/'},UserService,WebsiteService,PageService,WidgetService,FlickrService],

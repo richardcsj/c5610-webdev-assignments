@@ -25,6 +25,8 @@ export class WidgetChooserComponent implements OnInit {
   	switch(widgetType){
   		case 'HEADING':
   			widget = {_id: '', type: 'HEADING', pageId:this.pageId, size:0 , text: ''};break;
+      case 'HTML':
+        widget = {_id: '', type: 'HTML', pageId:this.pageId, text: ''};break;
   		case 'IMAGE':
   			widget = {_id: '', type: 'IMAGE', pageId: this.pageId, width: '',url: ''};break;
 		case 'YOUTUBE':
