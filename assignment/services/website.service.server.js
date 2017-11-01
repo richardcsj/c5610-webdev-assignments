@@ -1,4 +1,4 @@
-module.exports=function(app){
+module.exports=function(app,websiteModel){
 
 websites = [
         { "_id": "123", "name": "Facebook", "developerId": "456", "description": "Lorem" },
@@ -27,26 +27,30 @@ websites = [
   function createWebsite(req,res){
   	var website = req.body.website;
   	var userId = req.params.userId;
-		if(website!=undefined){
-			website._id = Math.floor(Math.random()*900) + 100;
-      website._id = ""+website._id;
-			website.developerId = userId;
-			websites.push(website);
-			res.send(website);
-		}else{
-      res.status(500).send("Couldn't create website");
-    }
+		websiteModel.createWebsiteForUser(userId,website)
+        .then(
+            function(result){
+              res.send(result);
+            },
+            function(error){
+              console.log(error);
+              res.status(500).send("Couldn't create website");
+            }
+          )
   }
 
   function findAllWebsitesForUser(req,res){
   	var userId = req.params.userId;
-  	var resultWebsites = [];
-    for (var x = 0; x < websites.length; x++) {
-      if (websites[x].developerId === userId) {
-        resultWebsites.push(websites[x]);
-      }
-    }
-    res.send(resultWebsites);
+    websiteModel.findAllWebsitesForUser(userId)
+        .then(
+            function(websites){
+              res.send(websites);
+            },
+            function(error){
+              console.log(error);
+              res.status(404).send("No websites found for userId");
+            }
+          )
   }
 
   function findWebsiteById(req,res){

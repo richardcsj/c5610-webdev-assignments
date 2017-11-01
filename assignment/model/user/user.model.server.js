@@ -1,7 +1,7 @@
 module.exports = function(app,mongoose){
 
 	var UserSchema = require("./user.schema.server.js")(app,mongoose),
-	UserModel = mongoose.model("UserModel", UserSchema),
+	UserModel = mongoose.model("User", UserSchema),
 	api = {
 		"createUser":createUser,
 		"findUserById":findUserById,
@@ -15,11 +15,11 @@ module.exports = function(app,mongoose){
 
 	
 	function createUser(user){
-		user._id = Math.floor(Math.random()*900) + 100;
+		user._id = mongoose.Types.ObjectId();
 		user.dateCreated = new Date();
+		user = new UserModel(user);
 		return UserModel
-			.create(user);
-			
+			.create(user);		
 	}
 
 	function findUserById(userId){
