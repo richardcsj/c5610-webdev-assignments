@@ -15,9 +15,11 @@ module.exports = function(app){
   	});
   	mongoose.Promise = require('bluebird');
   	var userModel = require('./user/user.model.server.js')(app,mongoose),
-  		websiteModel = require('./website/website.model.server.js')(app,mongoose,userModel);
+  		websiteModel = require('./website/website.model.server.js')(app,mongoose,userModel),
+  		pageModel = require('./page/page.model.server.js')(app,mongoose,websiteModel);
   	return {
   		userModel:userModel,
-  		websiteModel:websiteModel
+  		websiteModel:websiteModel,
+  		pageModel:pageModel
   	 }
 }
