@@ -33,6 +33,7 @@ import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-y
 import { SortableDirective } from './directives/sortable.directive';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 
 @NgModule({
   // Declare components here
@@ -57,7 +58,8 @@ import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html
     WidgetYoutubeComponent,
     SortableDirective,
     FlickrImageSearchComponent,
-    WidgetHtmlComponent
+    WidgetHtmlComponent,
+    WidgetTextComponent
   ],
   imports: [
     BrowserModule,
