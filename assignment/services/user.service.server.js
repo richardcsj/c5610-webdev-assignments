@@ -19,6 +19,8 @@ module.exports= function(app,userModel){
 	app.get('/api/user/:userId',api.findUserById);
 	app.put('/api/user/:userId',api.updateUser);
 	app.delete('/api/user/:userId',api.deleteUser);
+	app.post('/api/login', passport.authenticate('local'), login);
+	app.post('/api/logout', logout);
 
 	
 	passport.serializeUser(serializeUser);
@@ -57,7 +59,19 @@ module.exports= function(app,userModel){
                 if (err) { return done(err); }
             }
         );
-}
+	}
+
+	function login(req, res) {
+	    var user = req.user;
+	    res.json(user);
+	}
+
+	function logout(req, res) {
+	    req.logOut();
+	    res.send(200);
+	}
+
+
 
 	function createUser(req,res){
 		var user = req.body.user;

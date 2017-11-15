@@ -44,6 +44,13 @@ export class ProfileComponent implements OnInit {
     );
 	
 	}
+  logout() {
+   this.userService.logout()
+     .subscribe(
+       (data: any) => this.router.navigate(['/login'])
+     );
+}
+
   updateEmail(){
     this.errorFlag = false;
     this.messageFlag = false;
