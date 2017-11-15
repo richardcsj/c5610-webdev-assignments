@@ -9,9 +9,14 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const app = express();
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(session({ secret: process.env.SESSION_SECRET }));
 
 
 
