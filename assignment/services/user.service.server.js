@@ -1,5 +1,10 @@
 module.exports= function(app,userModel){
 
+	var passport = require('passport');
+	var LocalStrategy = require('passport-local').Strategy;
+	passport.use(new LocalStrategy(localStrategy));
+
+
     api = {
     'createUser': createUser,
     'findUser': findUser,
@@ -8,11 +13,51 @@ module.exports= function(app,userModel){
     'deleteUser': deleteUser
   };
 
+
 	app.post('/api/user',api.createUser);
 	app.get('/api/user',api.findUser);
 	app.get('/api/user/:userId',api.findUserById);
 	app.put('/api/user/:userId',api.updateUser);
 	app.delete('/api/user/:userId',api.deleteUser);
+
+	
+	passport.serializeUser(serializeUser);
+	passport.deserializeUser(deserializeUser);
+	
+
+	function serializeUser(user, done) {
+	    	done(null, user);
+		}
+
+	function deserializeUser(user, done) {
+    userModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
+	}
+
+	function localStrategy(username, password, done) {
+    userModel
+        .findUserByCredentials(username, password)
+        .then(
+            function(user) {
+                if(user.username === username && user.password === password) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        );
+}
 
 	function createUser(req,res){
 		var user = req.body.user;

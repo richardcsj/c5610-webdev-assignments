@@ -11,12 +11,16 @@ const bodyParser = require('body-parser');
 const app = express();
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
+var passport = require('passport');
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({ secret: process.env.SESSION_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 
