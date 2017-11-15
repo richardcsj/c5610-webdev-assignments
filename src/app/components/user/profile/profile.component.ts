@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute,Router} from "@angular/router";
 import {UserService} from "../../../services/user.service.client";
 
 @Component({
@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   errorMsg :string;
   messageFlag:boolean;
   message : string;
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
   	this.activatedRoute.params

@@ -10,7 +10,11 @@ module.exports= function(app,userModel){
     'findUser': findUser,
     'findUserById':findUserById,
     'updateUser': updateUser,
-    'deleteUser': deleteUser
+    'deleteUser': deleteUser,
+    'login': login,
+    'logout' : logout,
+    'register':register,
+    'loggedin':loggedin
   };
 
 
@@ -19,8 +23,10 @@ module.exports= function(app,userModel){
 	app.get('/api/user/:userId',api.findUserById);
 	app.put('/api/user/:userId',api.updateUser);
 	app.delete('/api/user/:userId',api.deleteUser);
-	app.post('/api/login', passport.authenticate('local'), login);
-	app.post('/api/logout', logout);
+	app.post('/api/login', passport.authenticate('local'), api.login);
+	app.post('/api/logout', api.logout);
+	app.post ('/api/register', api.register);
+	app.post ('/api/loggedIn', api.loggedin);
 
 	
 	passport.serializeUser(serializeUser);
@@ -71,6 +77,28 @@ module.exports= function(app,userModel){
 	    res.send(200);
 	}
 
+	function register (req, res) {
+	    var user = req.body;
+	    userModel
+	        .createUser(user)
+	        .then(
+	            function(user){
+	                if(user){
+	                    req.login(user, function(err) {
+	                        if(err) {
+	                            res.status(400).send(err);
+	                        } else {
+	                            res.json(user);
+	                        }
+	                    });
+	                }
+	            }
+	        );
+	}
+
+	function loggedin(req, res) {
+	    res.send(req.isAuthenticated() ? req.user : '0');
+	}
 
 
 	function createUser(req,res){

@@ -18,12 +18,14 @@ import {WidgetHeaderComponent} from "./components/widget/widget-edit/widget-head
 import {WidgetImageComponent} from "./components/widget/widget-edit/widget-image/widget-image.component";
 import {WidgetYoutubeComponent} from "./components/widget/widget-edit/widget-youtube/widget-youtube.component";
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {AuthGuard} from './services/auth-guard.service';
 
 // Import all other components here
 const APP_ROUTES : Routes = [
   { path : 'test', component: TestComponent},
   { path : 'login' , component: LoginComponent},
   { path : 'register' , component:RegisterComponent },
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path : 'user/:userId' , component: ProfileComponent},
   { path : 'user/:userId/website' , component: WebsiteListComponent},
   { path : 'user/:userId/website/new' , component: WebsiteNewComponent},

@@ -37,18 +37,16 @@ export class RegisterComponent implements OnInit {
         },
         (error:any)=>{
           if(this.password == this.pwdconfirmation){
-              let user = {_id: "", username: this.username, password: this.password, firstName: "", lastName: ""};
-              this.userService.createUser(user)
-              .subscribe(
-                (newUser:any)=>{
-                  //redirect to profile
-                  this.router.navigate(['/user',newUser._id]);
-                },
-                (error:any)=>{
-                  this.errorFlag = true;
-                  this.errorMsg = "Couldn't create user";
-                }
+              this.userService.register(this.username, this.password)
+                 .subscribe(
+                   (data: any) => {
+                     this.router.navigate(['/profile']);
+                   },
+                   (error: any) => {
+                     this.errorMsg = error._body;
+                   }
                 );
+
             }else{
               this.errorFlag = true;
               this.errorMsg = "password and password confirmation are not the same";

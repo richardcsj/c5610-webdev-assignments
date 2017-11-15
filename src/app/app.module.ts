@@ -11,6 +11,8 @@ import {WebsiteService} from './services/website.service.client';
 import {PageService} from './services/page.service.client';
 import {WidgetService} from './services/widget.service.client';
 import {FlickrService} from './services/flickr.service.client';
+import {SharedService} from './services/shared.service';
+import {AuthGuard} from './services/auth-guard.service';
 import {APP_BASE_HREF} from '@angular/common';
 import { QuillEditorModule } from 'ngx-quill-editor';
 
@@ -69,7 +71,7 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
     QuillEditorModule
   ],
   // Client Side services here
-  providers: [{provide: APP_BASE_HREF, useValue: '/'},UserService,WebsiteService,PageService,WidgetService,FlickrService],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'},UserService,WebsiteService,PageService,WidgetService,FlickrService,SharedService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
