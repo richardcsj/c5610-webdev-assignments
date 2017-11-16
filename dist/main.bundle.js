@@ -760,17 +760,19 @@ var LoginComponent = (function () {
         this.sharedService = sharedService;
         this.errorMsg = 'Invalid username or password !';
     }
-    LoginComponent.prototype.ngOnInit = function () { };
+    LoginComponent.prototype.ngOnInit = function () {
+        if (this.userService.loggedIn()) {
+            this.router.navigate(['/profile']);
+        }
+    };
     LoginComponent.prototype.login = function () {
         var _this = this;
         // fetching data from loginForm
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
         // calling client side userservice to send login information
-        console.log('data', this.username);
         this.userService.login(this.username, this.password)
             .subscribe(function (data) {
-            console.log('data', data);
             _this.sharedService.user = data;
             _this.router.navigate(['/profile']);
         }, function (error) {
@@ -830,6 +832,7 @@ module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n  <d
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__ = __webpack_require__("../../../../../src/app/services/user.service.client.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_shared_service__ = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -842,28 +845,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ProfileComponent = (function () {
-    function ProfileComponent(userService, activatedRoute, router) {
+    function ProfileComponent(userService, activatedRoute, router, sharedService) {
         this.userService = userService;
         this.activatedRoute = activatedRoute;
         this.router = router;
+        this.sharedService = sharedService;
     }
     ProfileComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.activatedRoute.params
-            .subscribe(function (params) {
-            _this.userId = params['userId'];
-        });
+        /*this.activatedRoute.params
+        .subscribe(
+            (params: any) => {
+            this.userId = params['userId'];
+            }
+        );
         this.userService.findUserById(this.userId)
-            .subscribe(function (user) {
-            _this.user = user;
-            _this.username = _this.user['username'];
-            _this.email = _this.user['email'];
-            _this.firstName = _this.user['firstName'];
-            _this.lastName = _this.user['lastName'];
-        }, function (error) {
-            console.log(error);
-        });
+      .subscribe(
+        (user:any)=>{*/
+        this.user = this.sharedService.user;
+        this.userId = this.user['_id'];
+        this.username = this.user['username'];
+        this.email = this.user['email'];
+        this.firstName = this.user['firstName'];
+        this.lastName = this.user['lastName'];
+        /*},
+        (error:any)=>{
+          console.log(error);
+    
+        }
+        );*/
     };
     ProfileComponent.prototype.logout = function () {
         var _this = this;
@@ -942,10 +953,10 @@ ProfileComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/user/profile/profile.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/profile/profile.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_user_service_client__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_shared_service__["a" /* SharedService */]) === "function" && _d || Object])
 ], ProfileComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),

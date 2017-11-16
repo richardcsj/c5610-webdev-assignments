@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute,Router} from "@angular/router";
 import {UserService} from "../../../services/user.service.client";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-profile',
@@ -19,10 +20,10 @@ export class ProfileComponent implements OnInit {
   errorMsg :string;
   messageFlag:boolean;
   message : string;
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,private router:Router) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,private router:Router,private sharedService : SharedService) { }
 
   ngOnInit() {
-  	this.activatedRoute.params
+  	/*this.activatedRoute.params
 	.subscribe(
 		(params: any) => {
 		this.userId = params['userId'];
@@ -30,18 +31,19 @@ export class ProfileComponent implements OnInit {
 	);
 	this.userService.findUserById(this.userId)
   .subscribe(
-    (user:any)=>{
-      this.user = user;
+    (user:any)=>{*/
+      this.user = this.sharedService.user;
+      this.userId = this.user['_id'];
       this.username = this.user['username'];
       this.email = this.user['email'];
       this.firstName = this.user['firstName'];
       this.lastName = this.user['lastName'];
-    },
+    /*},
     (error:any)=>{
       console.log(error);
 
     }
-    );
+    );*/
 	
 	}
   logout() {

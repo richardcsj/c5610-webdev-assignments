@@ -20,14 +20,19 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService,private route: ActivatedRoute,
             private router: Router,private sharedService : SharedService) {}
 
-  ngOnInit() { }
+  ngOnInit() { 
+
+    if(this.userService.loggedIn()){
+      this.router.navigate(['/profile']);
+    }
+
+  }
   login() {
       // fetching data from loginForm
        this.username = this.loginForm.value.username;
        this.password = this.loginForm.value.password;
 
        // calling client side userservice to send login information
-       console.log('data', this.username);
        this.userService.login(this.username, this.password)
          .subscribe(
            (data: any) => {
