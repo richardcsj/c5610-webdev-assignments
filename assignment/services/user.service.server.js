@@ -3,6 +3,7 @@ module.exports= function(app,userModel){
 	var passport = require('passport');
 	var LocalStrategy = require('passport-local').Strategy;
 	var FacebookStrategy = require('passport-facebook').Strategy;
+	var bcrypt = require("bcrypt-nodejs");
 	passport.use(new LocalStrategy(localStrategy));
 	var facebookConfig = {
 		clientID     : process.env.FACEBOOK_CLIENT_ID, //131757030865387
@@ -10,6 +11,7 @@ module.exports= function(app,userModel){
 	    callbackURL  : process.env.FACEBOOK_CALLBACK_URL//http://localhost:3100/auth/facebook/callback
 	};
 	passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
 
 
 
@@ -69,11 +71,12 @@ module.exports= function(app,userModel){
 	}
 
 	function localStrategy(username, password, done) {
+
     userModel
-        .findUserByCredentials(username, password)
+        .findUserByUsername(username)
         .then(
             function(user) {
-                if(user.username === username && user.password === password) {
+                if(user && bcrypt.compareSync(password, user.password)) {
                     return done(null, user);
                 } else {
                     return done(null, false);
@@ -128,6 +131,7 @@ module.exports= function(app,userModel){
 
 	function register (req, res) {
 	    var user = req.body;
+	    user.password = bcrypt.hashSync(user.password);
 	    userModel
 	        .createUser(user)
 	        .then(
