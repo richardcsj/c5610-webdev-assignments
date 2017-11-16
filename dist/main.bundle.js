@@ -724,7 +724,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <div *ngIf=\"errorFlag\"\r\n    class=\"alert alert-danger\">\r\n    {{errorMsg}}\r\n  </div>\r\n  <h1>Login</h1>\r\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\r\n    <input placeholder=\"username\"\r\n           name=\"username\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           ngModel\r\n           required\r\n           #username=\"ngModel\"/>\r\n    <span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">\r\n      Please enter username!\r\n    </span>\r\n    <input placeholder=\"password\"\r\n           name=\"password\"\r\n           type=\"password\"\r\n           class=\"form-control\"\r\n           ngModel\r\n           required\r\n           #password=\"ngModel\"/>\r\n    <span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">\r\n      Please enter password!\r\n    </span>\r\n\r\n    <button class=\"btn btn-primary btn-block\"\r\n            type=\"submit\"\r\n            [disabled]=\"!f.valid\">Login</button>\r\n    <a href=\"/auth/facebook\" class=\"btn btn-primary btn-block\">\r\n        <span class=\"fa fa-facebook\"></span>\r\n        Facebook\r\n    </a>\r\n\r\n    <a class=\"btn btn-success btn-block\" [routerLink]=\"['/register']\">Register</a>\r\n  </form>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"container\">\r\n  <div *ngIf=\"errorFlag\"\r\n    class=\"alert alert-danger\">\r\n    {{errorMsg}}\r\n  </div>\r\n  <h1>Login</h1>\r\n  <form (ngSubmit) = \"login()\" #f=\"ngForm\">\r\n    <input placeholder=\"username\"\r\n           name=\"username\"\r\n           type=\"text\"\r\n           class=\"form-control\"\r\n           ngModel\r\n           required\r\n           #username=\"ngModel\"\r\n           [ngClass]=\"{'alert': !username.valid && username.touched, 'alert-danger': !username.valid && username.touched}\"/>\r\n    <span class=\"help-block\" *ngIf=\"!username.valid && username.touched\">\r\n      Please enter username!\r\n    </span>\r\n    <input placeholder=\"password\"\r\n           name=\"password\"\r\n           type=\"password\"\r\n           class=\"form-control\"\r\n           ngModel\r\n           required\r\n           #password=\"ngModel\"\r\n           [ngClass]=\"{'alert': !password.valid && password.touched, 'alert-danger': !password.valid && password.touched}\"/>\r\n    <span class=\"help-block\" *ngIf=\"!password.valid && password.touched\">\r\n      Please enter password!\r\n    </span>\r\n\r\n    <button class=\"btn btn-primary btn-block\"\r\n            type=\"submit\"\r\n            >Login</button>\r\n    <a href=\"/auth/facebook\" class=\"btn btn-primary btn-block\">\r\n        <span class=\"fa fa-facebook\"></span>\r\n        Facebook\r\n    </a>\r\n\r\n    <a class=\"btn btn-success btn-block\" [routerLink]=\"['/register']\">Register</a>\r\n  </form>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -770,14 +770,24 @@ var LoginComponent = (function () {
         // fetching data from loginForm
         this.username = this.loginForm.value.username;
         this.password = this.loginForm.value.password;
-        // calling client side userservice to send login information
-        this.userService.login(this.username, this.password)
-            .subscribe(function (data) {
-            _this.sharedService.user = data;
-            _this.router.navigate(['/profile']);
-        }, function (error) {
-            console.log(error);
-        });
+        //validation
+        if (this.username == '' || this.password == '') {
+            this.errorFlag = true;
+            this.errorMsg = 'username and password are mandatory';
+        }
+        else {
+            this.errorFlag = false;
+            // calling client side userservice to send login information
+            this.userService.login(this.username, this.password)
+                .subscribe(function (data) {
+                _this.sharedService.user = data;
+                _this.router.navigate(['/profile']);
+            }, function (error) {
+                _this.errorFlag = true;
+                _this.errorMsg = 'Invalid username or password !';
+                console.log(error);
+            });
+        }
     };
     return LoginComponent;
 }());

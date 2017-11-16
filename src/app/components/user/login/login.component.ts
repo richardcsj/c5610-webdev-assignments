@@ -28,20 +28,29 @@ export class LoginComponent implements OnInit {
 
   }
   login() {
+
       // fetching data from loginForm
        this.username = this.loginForm.value.username;
        this.password = this.loginForm.value.password;
-
-       // calling client side userservice to send login information
+       //validation
+       if(this.username == ''|| this.password == ''){
+        this.errorFlag = true;
+        this.errorMsg = 'username and password are mandatory';
+       }else{
+        this.errorFlag = false;
+        // calling client side userservice to send login information
        this.userService.login(this.username, this.password)
          .subscribe(
            (data: any) => {
                this.sharedService.user = data;
                this.router.navigate(['/profile'])},
            (error: any) => {
+            this.errorFlag = true;
+            this.errorMsg = 'Invalid username or password !'
                console.log(error);
            }
          );
+       }       
 
     }
 }
