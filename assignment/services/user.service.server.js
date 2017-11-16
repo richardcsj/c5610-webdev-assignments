@@ -2,7 +2,16 @@ module.exports= function(app,userModel){
 
 	var passport = require('passport');
 	var LocalStrategy = require('passport-local').Strategy;
+	var FacebookStrategy = require('passport-facebook').Strategy;
 	passport.use(new LocalStrategy(localStrategy));
+	var facebookConfig = {
+		clientID     : process.env.FACEBOOK_CLIENT_ID, //131757030865387
+	    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,//6b1761f76f5354eabd64541999850d17
+	    callbackURL  : process.env.FACEBOOK_CALLBACK_URL//http://localhost:3100/auth/facebook/callback
+	};
+	passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+
 
 
     api = {
@@ -27,6 +36,15 @@ module.exports= function(app,userModel){
 	app.post('/api/logout', api.logout);
 	app.post ('/api/register', api.register);
 	app.post ('/api/loggedIn', api.loggedin);
+	app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+	app.get('/auth/facebook/callback',
+	    passport.authenticate('facebook', {
+	        successRedirect: '/profile',
+	        failureRedirect: '/login'
+	}));
+
+
+
 
 	
 	passport.serializeUser(serializeUser);
@@ -66,6 +84,37 @@ module.exports= function(app,userModel){
             }
         );
 	}
+	function facebookStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByFacebookId(profile.id)
+        .then(
+            function(user) {
+                if(user!=undefined) {
+                    return done(null, user);
+                } else {
+                	var user = {};
+                	user.facebook = {
+                		id:    profile.id,
+	        			token: token
+                	}
+                	userModel
+			        .createUser(user)
+			        .then(
+			            function(user){
+			                if(user){
+			                    return done(null, user);
+			                }
+			            }
+			        );
+                    //return done(null, false);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        );
+    }
+
 
 	function login(req, res) {
 	    var user = req.user;

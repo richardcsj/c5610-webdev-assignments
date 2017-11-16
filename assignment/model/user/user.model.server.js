@@ -8,12 +8,16 @@ module.exports = function(app,mongoose){
 		"findUserByUsername":findUserByUsername,
 		"findUserByCredentials":findUserByCredentials,
 		"updateUser":updateUser,
-		"deleteUser":deleteUser
+		"deleteUser":deleteUser,
+		"findUserByFacebookId":findUserByFacebookId 
 	}
 
 	return api;
 
-	
+	function findUserByFacebookId(facebookId) {
+    	return UserModel.findOne({'facebook.id': facebookId});
+	}
+
 	function createUser(user){
 		user._id = mongoose.Types.ObjectId();
 		user.dateCreated = new Date();
@@ -46,4 +50,8 @@ module.exports = function(app,mongoose){
 		return UserModel
 			.remove({_id:userId});
 	}
+
+	
+
+
 }
