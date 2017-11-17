@@ -15,6 +15,9 @@ export class WidgetYoutubeComponent implements OnInit {
 	widgetTitle:string;
 	widgetUrl:SafeResourceUrl;
 	widgetWidth:string;
+    errorFlag: boolean;
+  nameUpdated:boolean;
+  errorMsg = 'Widget Name is mandatory';
 
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute,private router:Router) { }
 
@@ -37,6 +40,10 @@ export class WidgetYoutubeComponent implements OnInit {
 
   }
   updateWidget(){
+    this.nameUpdated = true;
+    if(this.widgetName==undefined){
+      this.errorFlag = true;
+    }else{
   	this.widget['name'] = this.widgetName ;
   	this.widget['title'] = this.widgetTitle;
   	this.widget['width'] = this.widgetWidth;
@@ -47,6 +54,7 @@ export class WidgetYoutubeComponent implements OnInit {
   				this.router.navigate(['../'],{relativeTo:this.activatedRoute});
   			}
   		)
+    }
    }
   deleteWidget(){
   this.widgetService.deleteWidget(this.widgetId).subscribe(

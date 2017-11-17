@@ -33,11 +33,19 @@
 <div class="container">
   <div class="container-fluid">
 
+  <div *ngIf="errorFlag"
+     class="alert alert-danger">
+    {{errorMsg}}
+  </div>
   <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
 
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" [(ngModel)]="widgetName" name="widgetName"   placeholder="Name">
+    <input type="text" class="form-control" id="name"  [(ngModel)]="widgetName" name="widgetName"  placeholder="Name"
+    [ngClass]="{'alert-danger': widgetName==undefined && nameUpdated}">
+    <span class="help-block" *ngIf="widgetName==undefined && nameUpdated">
+      Please enter widget name!
+    </span>
   </div>
 
 

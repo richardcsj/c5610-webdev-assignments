@@ -16,6 +16,9 @@ export class WidgetTextComponent implements OnInit {
 	widgetRows:number;
 	widgetPlaceholder:string;
 	widgetFormatted:boolean;
+    errorFlag: boolean;
+  nameUpdated:boolean;
+  errorMsg = 'Widget Name is mandatory';
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute,private router : Router) { }
 
   ngOnInit() {
@@ -37,6 +40,10 @@ export class WidgetTextComponent implements OnInit {
 	);
   }
   updateWidget(){
+    this.nameUpdated = true;
+    if(this.widgetName==undefined){
+      this.errorFlag = true;
+    }else{
   	this.widget['name'] = this.widgetName ;
   	this.widget['text'] = this.widgetText;
   	this.widget['rows'] = this.widgetRows;
@@ -48,6 +55,7 @@ export class WidgetTextComponent implements OnInit {
   				this.router.navigate(['../'],{relativeTo:this.activatedRoute});
   			}
   		)
+    }
    }
   deleteWidget(){
   this.widgetService.deleteWidget(this.widgetId).subscribe(

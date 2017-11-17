@@ -16,6 +16,9 @@ export class WidgetHeaderComponent implements OnInit {
 	widgetName:string;
 	widgetText:string;
 	widgetSize:number;
+  errorFlag: boolean;
+  nameUpdated:boolean;
+  errorMsg = 'Widget Name is mandatory';
   constructor(private widgetService: WidgetService, private activatedRoute: ActivatedRoute,private router : Router) { }
 
   ngOnInit() {
@@ -38,15 +41,20 @@ export class WidgetHeaderComponent implements OnInit {
   }
 
   updateWidget(){
-  	this.widget['name'] = this.widgetName ;
-  	this.widget['text'] = this.widgetText;
-  	this.widget['size'] = ""+this.widgetSize;
-  	this.widgetService.updateWidget(this.widgetId,this.widget)
-  		.subscribe(
-  			(res:any)=>{
-  				this.router.navigate(['../'],{relativeTo:this.activatedRoute});
-  			}
-  		)
+    this.nameUpdated = true;
+    if(this.widgetName==undefined){
+      this.errorFlag = true;
+    }else{
+    	this.widget['name'] = this.widgetName ;
+    	this.widget['text'] = this.widgetText;
+    	this.widget['size'] = ""+this.widgetSize;
+    	this.widgetService.updateWidget(this.widgetId,this.widget)
+    		.subscribe(
+    			(res:any)=>{
+    				this.router.navigate(['../'],{relativeTo:this.activatedRoute});
+    			}
+    		)
+      }
    }
   deleteWidget(){
   this.widgetService.deleteWidget(this.widgetId).subscribe(
