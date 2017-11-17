@@ -12,8 +12,8 @@
            ngModel
            required
            #username="ngModel"
-           [ngClass]="{'alert': !username.valid && username.touched, 'alert-danger': !username.valid && username.touched}"/>
-    <span class="help-block" *ngIf="!username.valid && username.touched">
+           [ngClass]="{'alert-danger': !username.valid && formSubmitted}"/>
+    <span class="help-block" *ngIf="!username.valid && formSubmitted">
       Please enter username!
     </span>
     <input placeholder="password"
@@ -23,8 +23,8 @@
            ngModel
            required
            #password="ngModel"
-           [ngClass]="{'alert': !password.valid && password.touched, 'alert-danger': !password.valid && password.touched}"/>
-    <span class="help-block" *ngIf="!password.valid && password.touched">
+           [ngClass]="{'alert-danger': !password.valid && formSubmitted}"/>
+    <span class="help-block" *ngIf="!password.valid && formSubmitted">
       Please enter password!
     </span>
 

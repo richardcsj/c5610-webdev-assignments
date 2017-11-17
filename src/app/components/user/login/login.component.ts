@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   //properties
   username: string;
   password: string;
+  formSubmitted: boolean;
   errorFlag: boolean;
   errorMsg = 'Invalid username or password !';
   constructor(private userService: UserService,private route: ActivatedRoute,
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   }
   login() {
-
+      this.formSubmitted = true;
       // fetching data from loginForm
        this.username = this.loginForm.value.username;
        this.password = this.loginForm.value.password;

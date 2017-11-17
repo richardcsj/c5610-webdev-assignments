@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   username: string;
   password: string;
   pwdconfirmation: string;
+  formSubmitted: boolean;
   errorFlag: boolean;
   errorMsg = 'Invalid username!';
   constructor(private userService: UserService,private route: ActivatedRoute,
@@ -23,19 +24,19 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   register() {
+      this.formSubmitted = true;
       //hide error msg if already there
       this.errorFlag = false;
       // fetching data from registerForm
       this.username = this.registerForm.value.username;
       this.password = this.registerForm.value.password;
       this.pwdconfirmation = this.registerForm.value.pwdconfirmation;
-      this.userService.findUserByUsername(this.username)
-      .subscribe(
-        (user:any)=> {
-            this.errorFlag = true;
-            this.errorMsg = "The username is already taken";
-        },
-        (error:any)=>{
+
+      if(this.username == ''|| this.password == '' || this.pwdconfirmation == ''){
+        this.errorFlag = true;
+        this.errorMsg = 'all fields are mandatory';
+
+      }else{
           if(this.password == this.pwdconfirmation){
               this.userService.register(this.username, this.password)
                  .subscribe(
@@ -51,8 +52,8 @@ export class RegisterComponent implements OnInit {
               this.errorFlag = true;
               this.errorMsg = "password and password confirmation are not the same";
             }
-        }
-        );
+        
+      }
     }
 
 }

@@ -11,8 +11,9 @@
          class="form-control"
          ngModel
          required
-         #username="ngModel"/>
-  <span class="help-block" *ngIf="!username.valid && username.touched">
+         #username="ngModel"
+         [ngClass]="{'alert-danger': !username.valid && formSubmitted}"/>
+  <span class="help-block" *ngIf="!username.valid && formSubmitted">
       Please enter username!
   </span>
   <input placeholder="password"
@@ -21,8 +22,9 @@
          class="form-control"
          ngModel
          required
-         #password="ngModel"/>
-  <span class="help-block" *ngIf="!password.valid && password.touched">
+         #password="ngModel"
+         [ngClass]="{'alert-danger': !password.valid && formSubmitted}"/>
+  <span class="help-block" *ngIf="!password.valid && formSubmitted">
       Please enter password!
   </span>
   <input placeholder="verify password"
@@ -31,11 +33,12 @@
          class="form-control"
          ngModel
          required
-         #pwdconfirmation="ngModel"/>
-  <span class="help-block" *ngIf="!pwdconfirmation.valid && pwdconfirmation.touched">
+         #pwdconfirmation="ngModel"
+         [ngClass]="{'alert-danger': !pwdconfirmation.valid && formSubmitted}"/>
+  <span class="help-block" *ngIf="!pwdconfirmation.valid && formSubmitted">
       Please enter password confirmation!
   </span>
-  <button type="submit" [disabled]="!f.valid" class="btn btn-primary btn-block"
+  <button type="submit" class="btn btn-primary btn-block"
      >Register</button>
   <a class="btn btn-danger btn-block"
      [routerLink]="['/login']" >Cancel</a>
