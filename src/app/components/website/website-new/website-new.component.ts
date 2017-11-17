@@ -15,7 +15,11 @@ export class WebsiteNewComponent implements OnInit {
   userId:string;
   name: string;
   description: string;
+  formSubmitted: boolean;
+  errorFlag: boolean;
+  errorMsg = 'Website Name is mandatory';
   websites:any[]=[{}];
+
   constructor(private websiteService: WebsiteService,private route: ActivatedRoute,
             private router: Router) { }
 
@@ -37,19 +41,25 @@ export class WebsiteNewComponent implements OnInit {
 		)
   }
   createWebsite(){
-
+    this.formSubmitted = true;
   	this.name = this.websiteForm.value.name;
   	this.description = this.websiteForm.value.description;
-  	let website = { _id: "", name: this.name, developerId: this.userId, description: this.description };
+    if(this.name == ''){
+      this.errorFlag = true;
+    }else{
+      this.errorFlag = false;
+      let website = { _id: "", name: this.name, developerId: this.userId, description: this.description };
 
-  	this.websiteService.createWebsite(this.userId,website).subscribe(
-  			(website:any)=>{
-  				this.router.navigate(['../'],{relativeTo:this.route});
-  			},
-  			(error:any)=>{
-				console.log(error);
-			}
-  		)
+    this.websiteService.createWebsite(this.userId,website).subscribe(
+        (website:any)=>{
+          this.router.navigate(['../'],{relativeTo:this.route});
+        },
+        (error:any)=>{
+        console.log(error);
+      }
+      )
+    }
+  	
 
   }
 

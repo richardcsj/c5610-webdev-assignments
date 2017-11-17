@@ -14,6 +14,7 @@ export class WebsiteEditComponent implements OnInit {
 	websiteId:string;
 	websiteName:string;
 	description:string;
+	nameUpdated:boolean;
 	errorFlag : boolean;
 	errorMsg = "No website for particular id";
 	messageFlag:boolean;
@@ -64,19 +65,27 @@ export class WebsiteEditComponent implements OnInit {
 	updateName(){
 		this.errorFlag = false;
 		this.messageFlag = false;
+		this.nameUpdated = true;
 		if(this.website['name'] != this.websiteName){
-			this.website['name'] = this.websiteName;
-			this.websiteService.updateWebsite(this.websiteId,this.website)
-				.subscribe(
-					(res:any)=>{
-						this.messageFlag = true;
-						this.message = 'Website name is updated !';
-						},
-					(error:any)=>{
-						this.errorFlag = true;
-						this.errorMsg = 'Cannot update website name';
-					}
+			if(this.websiteName==''){
+				this.errorFlag = true;
+				this.errorMsg = "Website name is mandatory";
+
+			}else{
+				this.website['name'] = this.websiteName;
+				this.websiteService.updateWebsite(this.websiteId,this.website)
+					.subscribe(
+						(res:any)=>{
+							this.messageFlag = true;
+							this.message = 'Website name is updated !';
+							},
+						(error:any)=>{
+							this.errorFlag = true;
+							this.errorMsg = 'Cannot update website name';
+						}
 				);
+			}
+			
 		}
 		
 	}

@@ -57,10 +57,8 @@
 </nav>
 <div class="container">
   <div class="container-fluid">
-
     <div class="row">
       <div class="col-xs-3 visible-lg left-side"> <ul class="list-group">
-
         <li class="list-group-item link active borderless">Name</li>
 
         <li class="list-group-item link borderless" *ngFor="let website of websites"><a [routerLink]="['../',website._id,'page']">{{website.name}}</a>
@@ -68,7 +66,10 @@
 
       </ul></div>
       <div class="col-lg-9 col-xs-12 split-side">
-
+        <div *ngIf="errorFlag"
+          class="alert alert-danger">
+          {{errorMsg}}
+        </div>
         <div class="form-group">
         <label for="name">Name</label>
         <input type="text" 
@@ -78,8 +79,14 @@
                name="name"
                ngModel
                required
-               #name="ngModel">
+               #name="ngModel"      
+               [ngClass]="{'alert-danger': !name.valid && formSubmitted}"/>
+    <span class="help-block" *ngIf="!name.valid && formSubmitted">
+      Please enter website name!
+    </span>
+
       </div>
+
 
 
 
