@@ -16,6 +16,9 @@ export class PageEditComponent implements OnInit {
 	pageTitle:string;
 	msgFlag:boolean;
 	msg:string;
+  errorFlag: boolean;
+  nameUpdated:boolean;
+  errorMsg = 'Page Name is mandatory';
   constructor(private pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -38,19 +41,25 @@ export class PageEditComponent implements OnInit {
 		);
   }
   updateName(){
+    this.nameUpdated = true;
   	this.msgFlag = false;
   	if(this.pageName != this.page['name']){
-  		this.page['name'] = this.pageName;
-  		this.pageService.updatePage(this.pageId,this.page)
-  			.subscribe(
-  				(res:any)=>{
-  					this.msgFlag = true;
-  					this.msg = "Page name updated !";
-  				},
-  				(error:any)=>{
-  					console.log(error);
-  				}
-  			)
+      if(this.pageName == ''){
+        this.errorFlag = true;
+      }else{
+        this.errorFlag = false;
+    		this.page['name'] = this.pageName;
+    		this.pageService.updatePage(this.pageId,this.page)
+    			.subscribe(
+    				(res:any)=>{
+    					this.msgFlag = true;
+    					this.msg = "Page name updated !";
+    				},
+    				(error:any)=>{
+    					console.log(error);
+    				}
+    			)
+      }
   	}
 
   }
@@ -70,6 +79,14 @@ export class PageEditComponent implements OnInit {
   			)
   	}
 
+  }
+  ok(){
+    if(this.pageName!=''){
+      this.router.navigate(['../'],{relativeTo:this.activatedRoute});
+    }else{
+      this.nameUpdated = true;
+      this.errorFlag = true;
+    }
   }
   deletePage(){
     this.pageService.deletePage(this.pageId)

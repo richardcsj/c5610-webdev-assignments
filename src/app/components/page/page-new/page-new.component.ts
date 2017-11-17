@@ -12,6 +12,9 @@ export class PageNewComponent implements OnInit {
   websiteId:string;
   pageName:string;
   pageTitle:string;
+  formSubmitted: boolean;
+  errorFlag: boolean;
+  errorMsg = 'Page Name is mandatory';
 
   constructor(private pageService:PageService,private activatedRoute:ActivatedRoute,private router:Router) { }
 
@@ -24,13 +27,18 @@ export class PageNewComponent implements OnInit {
 	   );
   }
   createPage(){
-  	let page = { _id: "", name:this.pageName , websiteId: this.websiteId, title: this.pageTitle};
-  	this.pageService.createPage(this.websiteId,page)
-  		.subscribe(
-  			(page:any)=>{
-  				this.router.navigate(['../'],{relativeTo:this.activatedRoute});
-  			}
-  		)
+    this.formSubmitted = true;
+    if(this.pageName == undefined){
+      this.errorFlag = true;
+    }else{
+    	let page = { _id: "", name:this.pageName , websiteId: this.websiteId, title: this.pageTitle};
+    	this.pageService.createPage(this.websiteId,page)
+    		.subscribe(
+    			(page:any)=>{
+    				this.router.navigate(['../'],{relativeTo:this.activatedRoute});
+    			}
+    		)
+    }
   }
 
 }
