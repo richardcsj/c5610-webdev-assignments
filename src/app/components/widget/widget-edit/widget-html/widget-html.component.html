@@ -41,7 +41,7 @@
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name"  [(ngModel)]="widgetName" name="widgetName"  placeholder="Name"
     [ngClass]="{'alert-danger': widgetName==undefined && nameUpdated}">
-    <span class="help-block" *ngIf="widgetName==undefinedundefined && nameUpdated">
+    <span class="help-block" *ngIf="widgetName==undefined && nameUpdated">
       Please enter widget name!
     </span>
   </div>
